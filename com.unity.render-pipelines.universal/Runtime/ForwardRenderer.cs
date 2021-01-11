@@ -132,6 +132,9 @@ namespace UnityEngine.Rendering.Universal
             CoreUtils.Destroy(m_ScreenspaceShadowsMaterial);
         }
 
+        public static bool OptimizeFinalBlit = true;
+
+
         /// <inheritdoc />
         public override void Setup(ScriptableRenderContext context, ref RenderingData renderingData)
         {
@@ -214,7 +217,8 @@ namespace UnityEngine.Rendering.Universal
 
             // If camera requires depth and there's no depth pre-pass we create a depth texture that can be read later by effect requiring it.
             bool createDepthTexture = cameraData.requiresDepthTexture && !requiresDepthPrepass;
-            createDepthTexture |= (cameraData.renderType == CameraRenderType.Base && !cameraData.resolveFinalTarget);
+            if(!OptimizeFinalBlit)
+                createDepthTexture |= (cameraData.renderType == CameraRenderType.Base && !cameraData.resolveFinalTarget);
 
 #if UNITY_ANDROID || UNITY_WEBGL
             if (SystemInfo.graphicsDeviceType != GraphicsDeviceType.Vulkan)
@@ -224,8 +228,6 @@ namespace UnityEngine.Rendering.Universal
                 createColorTexture |= createDepthTexture;
             }
 #endif
-            // createColorTexture = false;
-            // createDepthTexture = false;
 
             // Configure all settings require to start a new camera stack (base camera only)
             if (cameraData.renderType == CameraRenderType.Base)
@@ -393,7 +395,6 @@ namespace UnityEngine.Rendering.Universal
 #endif
             #endregion
             {
-            // return;
             if (lastCameraInTheStack)
             {
                 // Post-processing will resolve to final target. No need for final blit pass.
@@ -434,7 +435,7 @@ namespace UnityEngine.Rendering.Universal
                     m_ActiveCameraColorAttachment == RenderTargetHandle.CameraTarget;
 
                 // We need final blit to resolve to screen
-                if (!cameraTargetResolved)
+                if (!cameraTargetResolved && !OptimizeFinalBlit)
                 {
                     m_FinalBlitPass.Setup(cameraTargetDescriptor, sourceForFinalPass);
                     EnqueuePass(m_FinalBlitPass);
@@ -444,10 +445,11 @@ namespace UnityEngine.Rendering.Universal
             // stay in RT so we resume rendering on stack after post-processing
             else if (applyPostProcessing)
             {
-                m_PostProcessPass.Setup(cameraTargetDescriptor, m_ActiveCameraColorAttachment, m_AfterPostProcessColor, m_ActiveCameraDepthAttachment, m_ColorGradingLut, false, false);
+                var des = OptimizeFinalBlit ? RenderTargetHandle.CameraTarget : m_AfterPostProcessColor;
+                m_PostProcessPass.Setup(cameraTargetDescriptor, m_ActiveCameraColorAttachment, des,
+                    m_ActiveCameraDepthAttachment, m_ColorGradingLut, false, false);
                 EnqueuePass(m_PostProcessPass);
             }
-
             }
 
 #if UNITY_EDITOR
@@ -582,7 +584,7 @@ namespace UnityEngine.Rendering.Universal
         {
             // When rendering a camera stack we always create an intermediate render texture to composite camera results.
             // We create it upon rendering the Base camera.
-            if (cameraData.renderType == CameraRenderType.Base && !cameraData.resolveFinalTarget)
+            if (!OptimizeFinalBlit && cameraData.renderType == CameraRenderType.Base && !cameraData.resolveFinalTarget)
                 return true;
 
             bool isSceneViewCamera = cameraData.isSceneViewCamera;
