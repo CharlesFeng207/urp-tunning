@@ -2,11 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7bac9e6a-191c-4295-bb76-546b833fa5f6" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/BloomTest.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/BloomTest.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.urp-tunning/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.urp-tunning/.idea/contentModel.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.urp-tunning/.idea/indexLayout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.urp-tunning/.idea/indexLayout.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.urp-tunning/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.urp-tunning/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ExampleAssets/Materials/Plastic_Rough_Mat.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ExampleAssets/Materials/Plastic_Rough_Mat.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ExampleAssets/Prefabs/Construction Light Low.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ExampleAssets/Prefabs/Construction Light Low.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/FPSDisplay.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/FPSDisplay.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/93A86C30-E32A-4fe5-A57E-5C2E6AB5E7EF.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/93A86C30-E32A-4fe5-A57E-5C2E6AB5E7EF.png.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Settings/SampleSceneProfile.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Settings/SampleSceneProfile.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/packages-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Settings/UniversalRP-LowQuality.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Settings/UniversalRP-LowQuality.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/com.unity.render-pipelines.universal/Runtime/ForwardRenderer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/com.unity.render-pipelines.universal/Runtime/ForwardRenderer.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -19,6 +26,7 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/com.unity.render-pipelines.universal/Runtime/ForwardRenderer.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/OptimizeFinalBlitTest.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/com.unity.render-pipelines.universal/Runtime/RenderingUtils.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/com.unity.render-pipelines.universal/Runtime/Data/UniversalRenderPipelineAsset.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/0847A0FA-F944-44CC-BAF1-958021B27F54/19/3eb39255/CommandBuffer.cs" root0="SKIP_HIGHLIGHTING" />
@@ -27,9 +35,13 @@
     <setting file="file://$PROJECT_DIR$/com.unity.render-pipelines.core/Runtime/Utilities/CoreUtils.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/com.unity.render-pipelines.universal/Runtime/RenderTargetHandle.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/com.unity.render-pipelines.universal/Runtime/ScriptableRendererFeature.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/com.unity.render-pipelines.universal/Editor/UniversalRenderPipelineAssetEditor.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/0847A0FA-F944-44CC-BAF1-958021B27F54/7f/2d6aeb7b/RenderTextureDescriptor.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/BloomTest.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/com.unity.render-pipelines.universal/Runtime/UniversalAdditionalCameraData.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/SimpleCameraController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/com.unity.render-pipelines.universal/Editor/2D/ShapeEditor/Selection/ISelection.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/UITest.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/0847A0FA-F944-44CC-BAF1-958021B27F54/cb/4738cf63/SystemInfo.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/com.unity.render-pipelines.universal/Runtime/2D/Renderer2D.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/com.unity.render-pipelines.universal/Runtime/Passes/PostProcessPass.cs" root0="FORCE_HIGHLIGHTING" />
@@ -42,16 +54,24 @@
     <setting file="file://$PROJECT_DIR$/com.unity.render-pipelines.universal/Runtime/Passes/ScriptableRenderPass.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/com.unity.render-pipelines.universal/Runtime/ScriptableRenderer.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/com.unity.render-pipelines.universal/Runtime/UniversalRenderPipeline.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/SRPBatcherTest.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/com.unity.render-pipelines.universal/Shaders/Particles/ParticlesLit.shader" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/SceneTest.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/com.unity.render-pipelines.universal/Runtime/Passes/ColorGradingLutPass.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/Assets/SetFps.cs" />
-        <option value="$PROJECT_DIR$/Assets/FPSDisplay.cs" />
         <option value="$PROJECT_DIR$/com.unity.render-pipelines.universal/Runtime/Passes/PostProcessPass.cs" />
         <option value="$PROJECT_DIR$/com.unity.render-pipelines.universal/Runtime/ForwardRenderer.cs" />
+        <option value="$PROJECT_DIR$/Assets/FPSDisplay.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/NewBehaviourScript.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/BloomTest.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/OptimizeFinalBlitTest.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/SRPBatcherTest.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/UITest.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/SceneTest.cs" />
       </list>
     </option>
   </component>
@@ -83,100 +103,111 @@
   </component>
   <component name="UnityProjectConfiguration" hasMinimizedUI="true" />
   <component name="UnityUnitTestConfiguration" currentTestLauncher="EditMode" />
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="WindowStateProjectService">
     <state width="535" height="546" key="DebuggerActiveHint" timestamp="1610349322037">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="535" height="546" key="DebuggerActiveHint/0.0.1536.824/1920.0.1536.824@0.0.1536.824" timestamp="1610349322037" />
-    <state width="1481" height="254" key="GridCell.Tab.0.bottom" timestamp="1610352573592">
+    <state width="1481" height="254" key="GridCell.Tab.0.bottom" timestamp="1610435359922">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1481" height="254" key="GridCell.Tab.0.bottom/0.0.1536.824/1920.0.1474.864@0.0.1536.824" timestamp="1610352573592" />
-    <state width="1481" height="254" key="GridCell.Tab.0.bottom/0.0.1536.824/1920.0.1536.824@0.0.1536.824" timestamp="1610350631699" />
-    <state width="1481" height="254" key="GridCell.Tab.0.center" timestamp="1610352573592">
+    <state width="1481" height="254" key="GridCell.Tab.0.bottom/0.0.1536.824/1920.0.1536.824@0.0.1536.824" timestamp="1610435359922" />
+    <state width="1481" height="254" key="GridCell.Tab.0.center" timestamp="1610435359922">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1481" height="254" key="GridCell.Tab.0.center/0.0.1536.824/1920.0.1474.864@0.0.1536.824" timestamp="1610352573592" />
-    <state width="1481" height="254" key="GridCell.Tab.0.center/0.0.1536.824/1920.0.1536.824@0.0.1536.824" timestamp="1610350631699" />
-    <state width="1481" height="254" key="GridCell.Tab.0.left" timestamp="1610352573591">
+    <state width="1481" height="254" key="GridCell.Tab.0.center/0.0.1536.824/1920.0.1536.824@0.0.1536.824" timestamp="1610435359922" />
+    <state width="1481" height="254" key="GridCell.Tab.0.left" timestamp="1610435359921">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1481" height="254" key="GridCell.Tab.0.left/0.0.1536.824/1920.0.1474.864@0.0.1536.824" timestamp="1610352573591" />
-    <state width="1481" height="254" key="GridCell.Tab.0.left/0.0.1536.824/1920.0.1536.824@0.0.1536.824" timestamp="1610350631698" />
-    <state width="1481" height="254" key="GridCell.Tab.0.right" timestamp="1610352573592">
+    <state width="1481" height="254" key="GridCell.Tab.0.left/0.0.1536.824/1920.0.1536.824@0.0.1536.824" timestamp="1610435359921" />
+    <state width="1481" height="254" key="GridCell.Tab.0.right" timestamp="1610435359922">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1481" height="254" key="GridCell.Tab.0.right/0.0.1536.824/1920.0.1474.864@0.0.1536.824" timestamp="1610352573592" />
-    <state width="1481" height="254" key="GridCell.Tab.0.right/0.0.1536.824/1920.0.1536.824@0.0.1536.824" timestamp="1610350631699" />
-    <state width="1481" height="254" key="GridCell.Tab.1.bottom" timestamp="1610352573592">
+    <state width="1481" height="254" key="GridCell.Tab.0.right/0.0.1536.824/1920.0.1536.824@0.0.1536.824" timestamp="1610435359922" />
+    <state width="1481" height="254" key="GridCell.Tab.1.bottom" timestamp="1610435359922">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1481" height="254" key="GridCell.Tab.1.bottom/0.0.1536.824/1920.0.1474.864@0.0.1536.824" timestamp="1610352573592" />
-    <state width="1481" height="254" key="GridCell.Tab.1.bottom/0.0.1536.824/1920.0.1536.824@0.0.1536.824" timestamp="1610350631699" />
-    <state width="1481" height="254" key="GridCell.Tab.1.center" timestamp="1610352573592">
+    <state width="1481" height="254" key="GridCell.Tab.1.bottom/0.0.1536.824/1920.0.1536.824@0.0.1536.824" timestamp="1610435359922" />
+    <state width="1481" height="254" key="GridCell.Tab.1.center" timestamp="1610435359922">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1481" height="254" key="GridCell.Tab.1.center/0.0.1536.824/1920.0.1474.864@0.0.1536.824" timestamp="1610352573592" />
-    <state width="1481" height="254" key="GridCell.Tab.1.center/0.0.1536.824/1920.0.1536.824@0.0.1536.824" timestamp="1610350631699" />
-    <state width="1481" height="254" key="GridCell.Tab.1.left" timestamp="1610352573592">
+    <state width="1481" height="254" key="GridCell.Tab.1.center/0.0.1536.824/1920.0.1536.824@0.0.1536.824" timestamp="1610435359922" />
+    <state width="1481" height="254" key="GridCell.Tab.1.left" timestamp="1610435359922">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1481" height="254" key="GridCell.Tab.1.left/0.0.1536.824/1920.0.1474.864@0.0.1536.824" timestamp="1610352573592" />
-    <state width="1481" height="254" key="GridCell.Tab.1.left/0.0.1536.824/1920.0.1536.824@0.0.1536.824" timestamp="1610350631699" />
-    <state width="1481" height="254" key="GridCell.Tab.1.right" timestamp="1610352573592">
+    <state width="1481" height="254" key="GridCell.Tab.1.left/0.0.1536.824/1920.0.1536.824@0.0.1536.824" timestamp="1610435359922" />
+    <state width="1481" height="254" key="GridCell.Tab.1.right" timestamp="1610435359922">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1481" height="254" key="GridCell.Tab.1.right/0.0.1536.824/1920.0.1474.864@0.0.1536.824" timestamp="1610352573592" />
-    <state width="1481" height="254" key="GridCell.Tab.1.right/0.0.1536.824/1920.0.1536.824@0.0.1536.824" timestamp="1610350631699" />
-    <state width="1481" height="254" key="GridCell.Tab.2.bottom" timestamp="1610352573593">
+    <state width="1481" height="254" key="GridCell.Tab.1.right/0.0.1536.824/1920.0.1536.824@0.0.1536.824" timestamp="1610435359922" />
+    <state width="1481" height="254" key="GridCell.Tab.2.bottom" timestamp="1610435359922">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1481" height="254" key="GridCell.Tab.2.bottom/0.0.1536.824/1920.0.1474.864@0.0.1536.824" timestamp="1610352573593" />
-    <state width="1481" height="254" key="GridCell.Tab.2.bottom/0.0.1536.824/1920.0.1536.824@0.0.1536.824" timestamp="1610350631699" />
-    <state width="1481" height="254" key="GridCell.Tab.2.center" timestamp="1610352573592">
+    <state width="1481" height="254" key="GridCell.Tab.2.bottom/0.0.1536.824/1920.0.1536.824@0.0.1536.824" timestamp="1610435359922" />
+    <state width="1481" height="254" key="GridCell.Tab.2.center" timestamp="1610435359922">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1481" height="254" key="GridCell.Tab.2.center/0.0.1536.824/1920.0.1474.864@0.0.1536.824" timestamp="1610352573592" />
-    <state width="1481" height="254" key="GridCell.Tab.2.center/0.0.1536.824/1920.0.1536.824@0.0.1536.824" timestamp="1610350631699" />
-    <state width="1481" height="254" key="GridCell.Tab.2.left" timestamp="1610352573592">
+    <state width="1481" height="254" key="GridCell.Tab.2.center/0.0.1536.824/1920.0.1536.824@0.0.1536.824" timestamp="1610435359922" />
+    <state width="1481" height="254" key="GridCell.Tab.2.left" timestamp="1610435359922">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1481" height="254" key="GridCell.Tab.2.left/0.0.1536.824/1920.0.1474.864@0.0.1536.824" timestamp="1610352573592" />
-    <state width="1481" height="254" key="GridCell.Tab.2.left/0.0.1536.824/1920.0.1536.824@0.0.1536.824" timestamp="1610350631699" />
-    <state width="1481" height="254" key="GridCell.Tab.2.right" timestamp="1610352573592">
+    <state width="1481" height="254" key="GridCell.Tab.2.left/0.0.1536.824/1920.0.1536.824@0.0.1536.824" timestamp="1610435359922" />
+    <state width="1481" height="254" key="GridCell.Tab.2.right" timestamp="1610435359922">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1481" height="254" key="GridCell.Tab.2.right/0.0.1536.824/1920.0.1474.864@0.0.1536.824" timestamp="1610352573592" />
-    <state width="1481" height="254" key="GridCell.Tab.2.right/0.0.1536.824/1920.0.1536.824@0.0.1536.824" timestamp="1610350631699" />
-    <state width="1481" height="254" key="GridCell.Tab.3.bottom" timestamp="1610352573593">
+    <state width="1481" height="254" key="GridCell.Tab.2.right/0.0.1536.824/1920.0.1536.824@0.0.1536.824" timestamp="1610435359922" />
+    <state width="1481" height="254" key="GridCell.Tab.3.bottom" timestamp="1610435359922">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1481" height="254" key="GridCell.Tab.3.bottom/0.0.1536.824/1920.0.1474.864@0.0.1536.824" timestamp="1610352573593" />
-    <state width="1481" height="254" key="GridCell.Tab.3.bottom/0.0.1536.824/1920.0.1536.824@0.0.1536.824" timestamp="1610350631700" />
-    <state width="1481" height="254" key="GridCell.Tab.3.center" timestamp="1610352573593">
+    <state width="1481" height="254" key="GridCell.Tab.3.bottom/0.0.1536.824/1920.0.1536.824@0.0.1536.824" timestamp="1610435359922" />
+    <state width="1481" height="254" key="GridCell.Tab.3.center" timestamp="1610435359922">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1481" height="254" key="GridCell.Tab.3.center/0.0.1536.824/1920.0.1474.864@0.0.1536.824" timestamp="1610352573593" />
-    <state width="1481" height="254" key="GridCell.Tab.3.center/0.0.1536.824/1920.0.1536.824@0.0.1536.824" timestamp="1610350631700" />
-    <state width="1481" height="254" key="GridCell.Tab.3.left" timestamp="1610352573593">
+    <state width="1481" height="254" key="GridCell.Tab.3.center/0.0.1536.824/1920.0.1536.824@0.0.1536.824" timestamp="1610435359922" />
+    <state width="1481" height="254" key="GridCell.Tab.3.left" timestamp="1610435359922">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1481" height="254" key="GridCell.Tab.3.left/0.0.1536.824/1920.0.1474.864@0.0.1536.824" timestamp="1610352573593" />
-    <state width="1481" height="254" key="GridCell.Tab.3.left/0.0.1536.824/1920.0.1536.824@0.0.1536.824" timestamp="1610350631699" />
-    <state width="1481" height="254" key="GridCell.Tab.3.right" timestamp="1610352573593">
+    <state width="1481" height="254" key="GridCell.Tab.3.left/0.0.1536.824/1920.0.1536.824@0.0.1536.824" timestamp="1610435359922" />
+    <state width="1481" height="254" key="GridCell.Tab.3.right" timestamp="1610435359922">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1481" height="254" key="GridCell.Tab.3.right/0.0.1536.824/1920.0.1474.864@0.0.1536.824" timestamp="1610352573593" />
-    <state width="1481" height="254" key="GridCell.Tab.3.right/0.0.1536.824/1920.0.1536.824@0.0.1536.824" timestamp="1610350631700" />
-    <state x="387" y="142" width="986" height="682" key="find.popup" timestamp="1610345203821">
+    <state width="1481" height="254" key="GridCell.Tab.3.right/0.0.1536.824/1920.0.1536.824@0.0.1536.824" timestamp="1610435359922" />
+    <state x="387" y="142" width="986" height="682" key="find.popup" timestamp="1610373156417">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="387" y="142" width="986" height="682" key="find.popup/0.0.1536.824/1920.0.1536.824@0.0.1536.824" timestamp="1610345203821" />
+    <state x="387" y="142" width="986" height="682" key="find.popup/0.0.1536.824/1920.0.1536.824@0.0.1536.824" timestamp="1610373156417" />
     <state x="387" y="144" width="762" height="536" key="find.popup/0.0.1536.824@0.0.1536.824" timestamp="1609511217156" />
-    <state x="431" y="145" width="840" height="678" key="search.everywhere.popup" timestamp="1610362113907">
+    <state x="431" y="145" width="840" height="678" key="search.everywhere.popup" timestamp="1610372852058">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="431" y="145" width="840" height="678" key="search.everywhere.popup/0.0.1536.824/1920.0.1536.824@0.0.1536.824" timestamp="1610362113907" />
+    <state x="431" y="145" width="840" height="678" key="search.everywhere.popup/0.0.1536.824/1920.0.1536.824@0.0.1536.824" timestamp="1610372852058" />
     <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1609511973949" />
   </component>
 </project>

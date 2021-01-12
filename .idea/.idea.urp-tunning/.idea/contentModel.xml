@@ -9,7 +9,12 @@
       <e p="Assets" t="Include">
         <e p="FPSDisplay.cs" t="Include" />
         <e p="Scripts" t="Include">
+          <e p="BloomTest.cs" t="Include" />
+          <e p="OptimizeFinalBlitTest.cs" t="Include" />
+          <e p="SceneTest.cs" t="Include" />
           <e p="SimpleCameraController.cs" t="Include" />
+          <e p="SRPBatcherTest.cs" t="Include" />
+          <e p="UITest.cs" t="Include" />
         </e>
         <e p="TutorialInfo" t="Include">
           <e p="Scripts" t="Include">

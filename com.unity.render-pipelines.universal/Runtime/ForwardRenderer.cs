@@ -132,7 +132,7 @@ namespace UnityEngine.Rendering.Universal
             CoreUtils.Destroy(m_ScreenspaceShadowsMaterial);
         }
 
-        public static bool OptimizeFinalBlit = true;
+        public static bool OptimizeFinalBlit = false;
 
 
         /// <inheritdoc />
