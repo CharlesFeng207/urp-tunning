@@ -446,6 +446,7 @@ namespace UnityEngine.Rendering.Universal
             else if (applyPostProcessing)
             {
                 var des = OptimizeFinalBlit ? RenderTargetHandle.CameraTarget : m_AfterPostProcessColor;
+
                 m_PostProcessPass.Setup(cameraTargetDescriptor, m_ActiveCameraColorAttachment, des,
                     m_ActiveCameraDepthAttachment, m_ColorGradingLut, false, false);
                 EnqueuePass(m_PostProcessPass);
