@@ -132,7 +132,6 @@ namespace UnityEngine.Rendering.Universal
             CoreUtils.Destroy(m_ScreenspaceShadowsMaterial);
         }
 
-        public static bool OptimizeFinalBlit = false;
 
 
         /// <inheritdoc />
@@ -217,8 +216,15 @@ namespace UnityEngine.Rendering.Universal
 
             // If camera requires depth and there's no depth pre-pass we create a depth texture that can be read later by effect requiring it.
             bool createDepthTexture = cameraData.requiresDepthTexture && !requiresDepthPrepass;
-            if(!OptimizeFinalBlit)
+            if (OptimizeFinalBlit)  // Just create depth color texture when create color texture.
+            {
+                if(createColorTexture)
+                    createDepthTexture |= (cameraData.renderType == CameraRenderType.Base && !cameraData.resolveFinalTarget);
+            }
+            else
+            {
                 createDepthTexture |= (cameraData.renderType == CameraRenderType.Base && !cameraData.resolveFinalTarget);
+            }
 
 #if UNITY_ANDROID || UNITY_WEBGL
             if (SystemInfo.graphicsDeviceType != GraphicsDeviceType.Vulkan)
@@ -434,21 +440,38 @@ namespace UnityEngine.Rendering.Universal
                     // offscreen camera rendering to a texture, we don't need a blit pass to resolve to screen
                     m_ActiveCameraColorAttachment == RenderTargetHandle.CameraTarget;
 
-                // We need final blit to resolve to screen
-                if (!cameraTargetResolved && !OptimizeFinalBlit)
+                if (OptimizeFinalBlit) // Never execute final blit.
                 {
-                    m_FinalBlitPass.Setup(cameraTargetDescriptor, sourceForFinalPass);
-                    EnqueuePass(m_FinalBlitPass);
+
                 }
+                else
+                {
+                    // We need final blit to resolve to screen
+                    if (!cameraTargetResolved)
+                    {
+                        m_FinalBlitPass.Setup(cameraTargetDescriptor, sourceForFinalPass);
+                        EnqueuePass(m_FinalBlitPass);
+                    }
+                }
+
             }
 
             // stay in RT so we resume rendering on stack after post-processing
             else if (applyPostProcessing)
             {
-                var des = OptimizeFinalBlit ? RenderTargetHandle.CameraTarget : m_AfterPostProcessColor;
+                if (OptimizeFinalBlit) // Directly Blit to camera target.
+                {
+                    m_PostProcessPass.Setup(cameraTargetDescriptor, m_ActiveCameraColorAttachment,
+                        RenderTargetHandle.CameraTarget,
+                        m_ActiveCameraDepthAttachment, m_ColorGradingLut, false, false);
+                }
+                else
+                {
+                    m_PostProcessPass.Setup(cameraTargetDescriptor, m_ActiveCameraColorAttachment,
+                        m_AfterPostProcessColor,
+                        m_ActiveCameraDepthAttachment, m_ColorGradingLut, false, false);
+                }
 
-                m_PostProcessPass.Setup(cameraTargetDescriptor, m_ActiveCameraColorAttachment, des,
-                    m_ActiveCameraDepthAttachment, m_ColorGradingLut, false, false);
                 EnqueuePass(m_PostProcessPass);
             }
             }
@@ -583,10 +606,18 @@ namespace UnityEngine.Rendering.Universal
         /// <returns>Return true if pipeline needs to render to a intermediate render texture.</returns>
         bool RequiresIntermediateColorTexture(ref CameraData cameraData)
         {
-            // When rendering a camera stack we always create an intermediate render texture to composite camera results.
-            // We create it upon rendering the Base camera.
-            if (!OptimizeFinalBlit && cameraData.renderType == CameraRenderType.Base && !cameraData.resolveFinalTarget)
-                return true;
+            if (OptimizeFinalBlit)  // Just skip.
+            {
+
+            }
+            else
+            {
+                // When rendering a camera stack we always create an intermediate render texture to composite camera results.
+                // We create it upon rendering the Base camera.
+                if (cameraData.renderType == CameraRenderType.Base && !cameraData.resolveFinalTarget)
+                    return true;
+            }
+
 
             bool isSceneViewCamera = cameraData.isSceneViewCamera;
             var cameraTargetDescriptor = cameraData.cameraTargetDescriptor;

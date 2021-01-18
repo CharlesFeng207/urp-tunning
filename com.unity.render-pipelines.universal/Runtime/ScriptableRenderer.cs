@@ -36,6 +36,8 @@ namespace UnityEngine.Rendering.Universal
             public bool cameraStacking { get; set; } = false;
         }
 
+        public static bool OptimizeFinalBlit = false;
+
         /// <summary>
         /// The renderer we are currently rendering with, for low-level render control only.
         /// <c>current</c> is null outside rendering scope.
@@ -570,7 +572,17 @@ namespace UnityEngine.Rendering.Universal
             renderPass.Configure(cmd, cameraData.cameraTargetDescriptor);
             renderPass.eyeIndex = eyeIndex;
 
-            SetRenderPassAttachments(cmd, renderPass, ref cameraData, ref firstTimeStereo);
+            if (OptimizeFinalBlit) // Don't set pass attachments to overlay camera.
+            {
+                if (cameraData.renderType == CameraRenderType.Base)
+                {
+                    SetRenderPassAttachments(cmd, renderPass, ref cameraData, ref firstTimeStereo);
+                }
+            }
+            else
+            {
+                SetRenderPassAttachments(cmd, renderPass, ref cameraData, ref firstTimeStereo);
+            }
 
             // We must execute the commands recorded at this point because potential call to context.StartMultiEye(cameraData.camera) below will alter internal renderer states
             // Also, we execute the commands recorded at this point to ensure SetRenderTarget is called before RenderPass.Execute

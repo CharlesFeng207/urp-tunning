@@ -10,11 +10,11 @@ public class OptimizeFinalBlitTest : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Text.text = $"OptimizeFinalBlit:{ForwardRenderer.OptimizeFinalBlit}";
+        Text.text = $"OptimizeFinalBlit:{ScriptableRenderer.OptimizeFinalBlit}";
     }
 
     public void OnClick()
     {
-        ForwardRenderer.OptimizeFinalBlit = !ForwardRenderer.OptimizeFinalBlit;
+        ScriptableRenderer.OptimizeFinalBlit = !ScriptableRenderer.OptimizeFinalBlit;
     }
 }
