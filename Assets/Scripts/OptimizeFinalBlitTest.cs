@@ -7,14 +7,16 @@ using UnityEngine.UI;
 public class OptimizeFinalBlitTest : MonoBehaviour
 {
     public Text Text;
+
+    public UniversalRenderPipelineAsset Asset;
     // Update is called once per frame
     void Update()
     {
-        Text.text = $"OptimizeFinalBlit:{ScriptableRenderer.OptimizeFinalBlit}";
+        Text.text = $"OptimizeFinalBlit:{Asset.useFinalBlitOptimize}";
     }
 
     public void OnClick()
     {
-        ScriptableRenderer.OptimizeFinalBlit = !ScriptableRenderer.OptimizeFinalBlit;
+        Asset.useFinalBlitOptimize = !Asset.useFinalBlitOptimize;
     }
 }

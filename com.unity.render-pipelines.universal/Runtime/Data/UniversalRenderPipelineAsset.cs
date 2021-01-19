@@ -202,6 +202,10 @@ namespace UnityEngine.Rendering.Universal
         [SerializeField] ColorGradingMode m_ColorGradingMode = ColorGradingMode.LowDynamicRange;
         [SerializeField] int m_ColorGradingLutSize = 32;
 
+        // Tunning setting
+        [SerializeField] bool m_UseFinalBlitOptimize = false;
+
+
         // Deprecated settings
         [SerializeField] ShadowQuality m_ShadowType = ShadowQuality.HardShadows;
         [SerializeField] bool m_LocalShadowsSupported = false;
@@ -722,6 +726,12 @@ namespace UnityEngine.Rendering.Universal
             get { return m_UseAdaptivePerformance; }
             set { m_UseAdaptivePerformance = value; }
         }
+
+       public bool useFinalBlitOptimize
+       {
+           get { return m_UseFinalBlitOptimize; }
+           set { m_UseFinalBlitOptimize = value; }
+       }
 
         public override Material defaultMaterial
         {

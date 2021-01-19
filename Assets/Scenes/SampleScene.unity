@@ -8682,6 +8682,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text: {fileID: 1297052294}
+  Asset: {fileID: 11400000, guid: fd5710c9d9f926e4eb79d4d844bd489b, type: 2}
 --- !u!1001 &2102730982
 PrefabInstance:
   m_ObjectHideFlags: 0

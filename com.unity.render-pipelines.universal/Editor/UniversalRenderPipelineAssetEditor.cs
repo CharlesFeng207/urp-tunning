@@ -19,6 +19,7 @@ namespace UnityEditor.Rendering.Universal
             public static GUIContent postProcessingSettingsText = EditorGUIUtility.TrTextContent("Post-processing");
             public static GUIContent advancedSettingsText = EditorGUIUtility.TrTextContent("Advanced");
             public static GUIContent adaptivePerformanceText = EditorGUIUtility.TrTextContent("Adaptive Performance");
+            public static GUIContent tunningText = EditorGUIUtility.TrTextContent("URP-Tunning");
 
             // General
             public static GUIContent rendererHeaderText = EditorGUIUtility.TrTextContent("Renderer List", "Lists all the renderers available to this Render Pipeline Asset.");
@@ -75,6 +76,10 @@ namespace UnityEditor.Rendering.Universal
             // Adaptive performance settings
             public static GUIContent useAdaptivePerformance = EditorGUIUtility.TrTextContent("Use adaptive performance", "Allows Adaptive Performance to adjust rendering quality during runtime");
 
+            // URP tunning settings
+            public static GUIContent useFinalBlitOptimize = EditorGUIUtility.TrTextContent("Use final blit optimize", "Directly render to camera target, no final blit");
+
+
             // Renderer List Messages
             public static GUIContent rendererListDefaultMessage =
                 EditorGUIUtility.TrTextContent("Cannot remove Default Renderer",
@@ -98,6 +103,8 @@ namespace UnityEditor.Rendering.Universal
         SavedBool m_PostProcessingSettingsFoldout;
         SavedBool m_AdvancedSettingsFoldout;
         SavedBool m_AdaptivePerformanceFoldout;
+        SavedBool m_TunningFoldout;
+
 
         SerializedProperty m_RendererDataProp;
         SerializedProperty m_DefaultRendererProp;
@@ -144,6 +151,9 @@ namespace UnityEditor.Rendering.Universal
 
         SerializedProperty m_UseAdaptivePerformance;
 
+        SerializedProperty m_UseFinalBlitOptimize;
+
+
         public override void OnInspectorGUI()
         {
             serializedObject.Update();
@@ -154,6 +164,8 @@ namespace UnityEditor.Rendering.Universal
             DrawShadowSettings();
             DrawPostProcessingSettings();
             DrawAdvancedSettings();
+            DrawTunningSettings();
+
 #if ADAPTIVE_PERFORMANCE_2_0_0_OR_NEWER
             DrawAdaptivePerformance();
 #endif
@@ -170,6 +182,7 @@ namespace UnityEditor.Rendering.Universal
             m_PostProcessingSettingsFoldout = new SavedBool($"{target.GetType()}.PostProcessingSettingsFoldout", false);
             m_AdvancedSettingsFoldout = new SavedBool($"{target.GetType()}.AdvancedSettingsFoldout", false);
             m_AdaptivePerformanceFoldout = new SavedBool($"{target.GetType()}.AdaptivePerformanceFoldout", false);
+            m_TunningFoldout = new SavedBool($"{target.GetType()}.TunningFoldout", false);
 
             m_RendererDataProp = serializedObject.FindProperty("m_RendererDataList");
             m_DefaultRendererProp = serializedObject.FindProperty("m_DefaultRendererIndex");
@@ -217,6 +230,8 @@ namespace UnityEditor.Rendering.Universal
             m_UseAdaptivePerformance = serializedObject.FindProperty("m_UseAdaptivePerformance");
 
             selectedLightRenderingMode = (LightRenderingMode)m_AdditionalLightsRenderingModeProp.intValue;
+
+            m_UseFinalBlitOptimize = serializedObject.FindProperty("m_UseFinalBlitOptimize");
         }
 
         void DrawGeneralSettings()
@@ -407,6 +422,20 @@ namespace UnityEditor.Rendering.Universal
                 EditorGUILayout.PropertyField(m_MixedLightingSupportedProp, Styles.mixedLightingSupportLabel);
                 EditorGUILayout.PropertyField(m_DebugLevelProp, Styles.debugLevel);
                 EditorGUILayout.PropertyField(m_ShaderVariantLogLevel, Styles.shaderVariantLogLevel);
+                EditorGUI.indentLevel--;
+                EditorGUILayout.Space();
+                EditorGUILayout.Space();
+            }
+            EditorGUILayout.EndFoldoutHeaderGroup();
+        }
+
+        void DrawTunningSettings()
+        {
+            m_TunningFoldout.value = EditorGUILayout.BeginFoldoutHeaderGroup(m_TunningFoldout.value, Styles.tunningText);
+            if (m_TunningFoldout.value)
+            {
+                EditorGUI.indentLevel++;
+                EditorGUILayout.PropertyField(m_UseFinalBlitOptimize, Styles.useFinalBlitOptimize);
                 EditorGUI.indentLevel--;
                 EditorGUILayout.Space();
                 EditorGUILayout.Space();

@@ -280,6 +280,11 @@ namespace UnityEngine.Rendering.Universal
             return support;
         }
 
+        public static bool ShouldUseFinalBlitOptimize(ref CameraData camera)
+        {
+            return UniversalRenderPipeline.asset.useFinalBlitOptimize && !camera.isSceneViewCamera && !camera.isPreviewCamera;
+        }
+
         /// <summary>
         /// Return the last colorBuffer index actually referring to an existing RenderTarget
         /// </summary>

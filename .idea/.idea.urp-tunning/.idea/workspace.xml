@@ -2,7 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7bac9e6a-191c-4295-bb76-546b833fa5f6" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.urp-tunning/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.urp-tunning/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/OptimizeFinalBlitTest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/OptimizeFinalBlitTest.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/GraphicsSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/GraphicsSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.unity.render-pipelines.universal/Editor/UniversalRenderPipelineAssetEditor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/com.unity.render-pipelines.universal/Editor/UniversalRenderPipelineAssetEditor.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.unity.render-pipelines.universal/Runtime/Data/UniversalRenderPipelineAsset.cs" beforeDir="false" afterPath="$PROJECT_DIR$/com.unity.render-pipelines.universal/Runtime/Data/UniversalRenderPipelineAsset.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.unity.render-pipelines.universal/Runtime/ForwardRenderer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/com.unity.render-pipelines.universal/Runtime/ForwardRenderer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.unity.render-pipelines.universal/Runtime/RenderingUtils.cs" beforeDir="false" afterPath="$PROJECT_DIR$/com.unity.render-pipelines.universal/Runtime/RenderingUtils.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.unity.render-pipelines.universal/Runtime/ScriptableRenderer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/com.unity.render-pipelines.universal/Runtime/ScriptableRenderer.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -15,49 +22,57 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/com.unity.render-pipelines.universal/Runtime/ForwardRenderer.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/OptimizeFinalBlitTest.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/0847A0FA-F944-44CC-BAF1-958021B27F54/9e/39238dfa/GraphicsSettings.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/com.unity.render-pipelines.universal/Runtime/RenderingUtils.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/com.unity.render-pipelines.universal/Runtime/Data/UniversalRenderPipelineAsset.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/com.unity.render-pipelines.core/Runtime/Utilities/ResourceReloader.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Temp/Compiled-UI-Default.shader" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/0847A0FA-F944-44CC-BAF1-958021B27F54/19/3eb39255/CommandBuffer.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/FPSDisplay.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/com.unity.render-pipelines.core/Runtime/Common/CommonStructs.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/com.unity.render-pipelines.core/ShaderLibrary/CommonMaterial.hlsl" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/com.unity.render-pipelines.core/Runtime/Utilities/CoreUtils.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/com.unity.render-pipelines.universal/Runtime/ForwardRendererData.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/com.unity.render-pipelines.universal/Runtime/RenderTargetHandle.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/com.unity.render-pipelines.universal/Runtime/ScriptableRendererFeature.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/com.unity.render-pipelines.universal/Editor/ShaderGraph/SubShaders/UniversalSpriteUnlitSubShader.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/com.unity.render-pipelines.universal/Runtime/ForwardLights.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/com.unity.render-pipelines.universal/Editor/UniversalRenderPipelineAssetEditor.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/0847A0FA-F944-44CC-BAF1-958021B27F54/7f/2d6aeb7b/RenderTextureDescriptor.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/BloomTest.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/com.unity.render-pipelines.universal/Runtime/UniversalAdditionalCameraData.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/SimpleCameraController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/com.unity.render-pipelines.universal/Editor/ShaderGUI/Shaders/SimpleLitShader.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/com.unity.render-pipelines.universal/Editor/2D/ShapeEditor/Selection/ISelection.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/UITest.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/0847A0FA-F944-44CC-BAF1-958021B27F54/cb/4738cf63/SystemInfo.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/com.unity.render-pipelines.universal/Runtime/2D/Renderer2D.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/com.unity.render-pipelines.universal/Editor/UniversalRenderPipelineMaterialUpgrader.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/com.unity.render-pipelines.universal/Editor/ShaderGUI/BaseShaderGUI.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/com.unity.render-pipelines.universal/Runtime/Passes/PostProcessPass.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/com.unity.render-pipelines.universal/Runtime/UniversalRenderPipelineCore.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/0847A0FA-F944-44CC-BAF1-958021B27F54/9a/d4600a09/BuiltinRenderTextureType.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/com.unity.render-pipelines.universal/Shaders/PostProcessing/LutBuilderHdr.shader" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/com.unity.render-pipelines.universal/Runtime/Passes/FinalBlitPass.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/0847A0FA-F944-44CC-BAF1-958021B27F54/ef/46ed80f4/RenderBufferLoadAction.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/com.unity.render-pipelines.universal/Runtime/Passes/DepthOnlyPass.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/com.unity.render-pipelines.universal/Runtime/Passes/SceneViewDepthCopy.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/com.unity.render-pipelines.core/Runtime/RenderGraph/RenderGraph.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/com.unity.render-pipelines.universal/Runtime/Passes/ScriptableRenderPass.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/com.unity.render-pipelines.universal/Runtime/ScriptableRenderer.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/com.unity.render-pipelines.universal/Runtime/Passes/MainLightShadowCasterPass.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/com.unity.render-pipelines.universal/Runtime/UniversalRenderPipeline.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/com.unity.render-pipelines.universal/Editor/ForwardRendererDataEditor.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/com.unity.render-pipelines.core/Runtime/RenderGraph/RenderGraphResourceRegistry.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/com.unity.render-pipelines.universal/Runtime/Passes/DrawObjectsPass.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/SRPBatcherTest.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/com.unity.render-pipelines.universal/Runtime/Passes/AdditionalLightsShadowCasterPass.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/com.unity.render-pipelines.universal/Shaders/Particles/ParticlesLit.shader" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/com.unity.render-pipelines.universal/Editor/2D/ShapeEditor/EditablePath/IEditablePathController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/SceneTest.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/com.unity.render-pipelines.universal/Runtime/Passes/ColorGradingLutPass.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/com.unity.render-pipelines.universal/Runtime/Data/UniversalRenderPipelineAsset.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/com.unity.render-pipelines.core/Runtime/Utilities/ResourceReloader.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/FPSDisplay.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/com.unity.render-pipelines.core/Runtime/Common/CommonStructs.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/com.unity.render-pipelines.core/ShaderLibrary/CommonMaterial.hlsl" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/com.unity.render-pipelines.core/Runtime/Utilities/CoreUtils.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/com.unity.render-pipelines.universal/Editor/ShaderGraph/SubShaders/UniversalSpriteUnlitSubShader.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/com.unity.render-pipelines.universal/Editor/UniversalRenderPipelineAssetEditor.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/SimpleCameraController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/UITest.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/com.unity.render-pipelines.universal/Runtime/2D/Renderer2D.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/com.unity.render-pipelines.universal/Editor/UniversalRenderPipelineMaterialUpgrader.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/0847A0FA-F944-44CC-BAF1-958021B27F54/9a/d4600a09/BuiltinRenderTextureType.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/0847A0FA-F944-44CC-BAF1-958021B27F54/ef/46ed80f4/RenderBufferLoadAction.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/com.unity.render-pipelines.universal/ShaderLibrary/Particles.hlsl" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/0847A0FA-F944-44CC-BAF1-958021B27F54/8c/94e3fd41/RenderTargetIdentifier.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/com.unity.render-pipelines.universal/Runtime/UniversalRenderPipeline.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/SRPBatcherTest.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/com.unity.render-pipelines.universal/Editor/2D/ShapeEditor/EditablePath/IEditablePathController.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -66,13 +81,17 @@
         <option value="$PROJECT_DIR$/Assets/FPSDisplay.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/NewBehaviourScript.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/BloomTest.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/OptimizeFinalBlitTest.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/SRPBatcherTest.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/UITest.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/SceneTest.cs" />
         <option value="$PROJECT_DIR$/com.unity.render-pipelines.universal/Runtime/Passes/PostProcessPass.cs" />
         <option value="$PROJECT_DIR$/com.unity.render-pipelines.universal/Runtime/Passes/DrawObjectsPass.cs" />
+        <option value="$PROJECT_DIR$/com.unity.render-pipelines.universal/Editor/UniversalRenderPipelineAssetEditor.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/OptimizeFinalBlitTest.cs" />
+        <option value="$PROJECT_DIR$/com.unity.render-pipelines.universal/Runtime/RenderingUtils.cs" />
+        <option value="$PROJECT_DIR$/com.unity.render-pipelines.universal/Runtime/Data/UniversalRenderPipelineAsset.cs" />
         <option value="$PROJECT_DIR$/com.unity.render-pipelines.universal/Runtime/ForwardRenderer.cs" />
+        <option value="$PROJECT_DIR$/com.unity.render-pipelines.universal/Runtime/ScriptableRenderer.cs" />
       </list>
     </option>
   </component>
@@ -95,10 +114,10 @@
       <option name="pid" />
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="828">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" />
+      <option name="pid" value="828" />
       <method v="2" />
     </configuration>
   </component>
@@ -118,134 +137,108 @@
     </option>
   </component>
   <component name="WindowStateProjectService">
-    <state width="653" height="546" key="DebuggerActiveHint" timestamp="1610974497788">
+    <state width="653" height="546" key="DebuggerActiveHint" timestamp="1611038252373">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="653" height="546" key="DebuggerActiveHint/0.0.1536.824/1920.0.1536.824@0.0.1536.824" timestamp="1610974497788" />
-    <state width="1481" height="225" key="GridCell.Tab.0.bottom" timestamp="1610974546384">
+    <state width="653" height="546" key="DebuggerActiveHint/0.0.1536.824/1920.0.1536.824@0.0.1536.824" timestamp="1611038252373" />
+    <state width="1481" height="200" key="GridCell.Tab.0.bottom" timestamp="1611038293671">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1481" height="254" key="GridCell.Tab.0.bottom/0.0.1536.824/1920.0.1474.864@0.0.1536.824" timestamp="1610352573592" />
-    <state width="1481" height="225" key="GridCell.Tab.0.bottom/0.0.1536.824/1920.0.1536.824@0.0.1536.824" timestamp="1610974546384" />
-    <state width="1481" height="225" key="GridCell.Tab.0.center" timestamp="1610974546384">
+    <state width="1481" height="200" key="GridCell.Tab.0.bottom/0.0.1536.824/1920.0.1536.824@0.0.1536.824" timestamp="1611038293671" />
+    <state width="1481" height="200" key="GridCell.Tab.0.center" timestamp="1611038293671">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1481" height="254" key="GridCell.Tab.0.center/0.0.1536.824/1920.0.1474.864@0.0.1536.824" timestamp="1610352573592" />
-    <state width="1481" height="225" key="GridCell.Tab.0.center/0.0.1536.824/1920.0.1536.824@0.0.1536.824" timestamp="1610974546384" />
-    <state width="1481" height="225" key="GridCell.Tab.0.left" timestamp="1610974546384">
+    <state width="1481" height="200" key="GridCell.Tab.0.center/0.0.1536.824/1920.0.1536.824@0.0.1536.824" timestamp="1611038293671" />
+    <state width="1481" height="200" key="GridCell.Tab.0.left" timestamp="1611038293671">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1481" height="254" key="GridCell.Tab.0.left/0.0.1536.824/1920.0.1474.864@0.0.1536.824" timestamp="1610352573591" />
-    <state width="1481" height="225" key="GridCell.Tab.0.left/0.0.1536.824/1920.0.1536.824@0.0.1536.824" timestamp="1610974546384" />
-    <state width="1481" height="225" key="GridCell.Tab.0.right" timestamp="1610974546384">
+    <state width="1481" height="200" key="GridCell.Tab.0.left/0.0.1536.824/1920.0.1536.824@0.0.1536.824" timestamp="1611038293671" />
+    <state width="1481" height="200" key="GridCell.Tab.0.right" timestamp="1611038293671">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1481" height="254" key="GridCell.Tab.0.right/0.0.1536.824/1920.0.1474.864@0.0.1536.824" timestamp="1610352573592" />
-    <state width="1481" height="225" key="GridCell.Tab.0.right/0.0.1536.824/1920.0.1536.824@0.0.1536.824" timestamp="1610974546384" />
-    <state width="1481" height="225" key="GridCell.Tab.1.bottom" timestamp="1610974546384">
+    <state width="1481" height="200" key="GridCell.Tab.0.right/0.0.1536.824/1920.0.1536.824@0.0.1536.824" timestamp="1611038293671" />
+    <state width="1481" height="200" key="GridCell.Tab.1.bottom" timestamp="1611038293672">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1481" height="254" key="GridCell.Tab.1.bottom/0.0.1536.824/1920.0.1474.864@0.0.1536.824" timestamp="1610352573592" />
-    <state width="1481" height="225" key="GridCell.Tab.1.bottom/0.0.1536.824/1920.0.1536.824@0.0.1536.824" timestamp="1610974546384" />
-    <state width="1481" height="225" key="GridCell.Tab.1.center" timestamp="1610974546384">
+    <state width="1481" height="200" key="GridCell.Tab.1.bottom/0.0.1536.824/1920.0.1536.824@0.0.1536.824" timestamp="1611038293672" />
+    <state width="1481" height="200" key="GridCell.Tab.1.center" timestamp="1611038293671">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1481" height="254" key="GridCell.Tab.1.center/0.0.1536.824/1920.0.1474.864@0.0.1536.824" timestamp="1610352573592" />
-    <state width="1481" height="225" key="GridCell.Tab.1.center/0.0.1536.824/1920.0.1536.824@0.0.1536.824" timestamp="1610974546384" />
-    <state width="1481" height="225" key="GridCell.Tab.1.left" timestamp="1610974546384">
+    <state width="1481" height="200" key="GridCell.Tab.1.center/0.0.1536.824/1920.0.1536.824@0.0.1536.824" timestamp="1611038293671" />
+    <state width="1481" height="200" key="GridCell.Tab.1.left" timestamp="1611038293671">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1481" height="254" key="GridCell.Tab.1.left/0.0.1536.824/1920.0.1474.864@0.0.1536.824" timestamp="1610352573592" />
-    <state width="1481" height="225" key="GridCell.Tab.1.left/0.0.1536.824/1920.0.1536.824@0.0.1536.824" timestamp="1610974546384" />
-    <state width="1481" height="225" key="GridCell.Tab.1.right" timestamp="1610974546384">
+    <state width="1481" height="200" key="GridCell.Tab.1.left/0.0.1536.824/1920.0.1536.824@0.0.1536.824" timestamp="1611038293671" />
+    <state width="1481" height="200" key="GridCell.Tab.1.right" timestamp="1611038293671">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1481" height="254" key="GridCell.Tab.1.right/0.0.1536.824/1920.0.1474.864@0.0.1536.824" timestamp="1610352573592" />
-    <state width="1481" height="225" key="GridCell.Tab.1.right/0.0.1536.824/1920.0.1536.824@0.0.1536.824" timestamp="1610974546384" />
-    <state width="1481" height="225" key="GridCell.Tab.2.bottom" timestamp="1610974546384">
+    <state width="1481" height="200" key="GridCell.Tab.1.right/0.0.1536.824/1920.0.1536.824@0.0.1536.824" timestamp="1611038293671" />
+    <state width="1481" height="200" key="GridCell.Tab.2.bottom" timestamp="1611038293672">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1481" height="254" key="GridCell.Tab.2.bottom/0.0.1536.824/1920.0.1474.864@0.0.1536.824" timestamp="1610352573593" />
-    <state width="1481" height="225" key="GridCell.Tab.2.bottom/0.0.1536.824/1920.0.1536.824@0.0.1536.824" timestamp="1610974546384" />
-    <state width="1481" height="225" key="GridCell.Tab.2.center" timestamp="1610974546384">
+    <state width="1481" height="200" key="GridCell.Tab.2.bottom/0.0.1536.824/1920.0.1536.824@0.0.1536.824" timestamp="1611038293672" />
+    <state width="1481" height="200" key="GridCell.Tab.2.center" timestamp="1611038293672">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1481" height="254" key="GridCell.Tab.2.center/0.0.1536.824/1920.0.1474.864@0.0.1536.824" timestamp="1610352573592" />
-    <state width="1481" height="225" key="GridCell.Tab.2.center/0.0.1536.824/1920.0.1536.824@0.0.1536.824" timestamp="1610974546384" />
-    <state width="1481" height="225" key="GridCell.Tab.2.left" timestamp="1610974546384">
+    <state width="1481" height="200" key="GridCell.Tab.2.center/0.0.1536.824/1920.0.1536.824@0.0.1536.824" timestamp="1611038293672" />
+    <state width="1481" height="200" key="GridCell.Tab.2.left" timestamp="1611038293672">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1481" height="254" key="GridCell.Tab.2.left/0.0.1536.824/1920.0.1474.864@0.0.1536.824" timestamp="1610352573592" />
-    <state width="1481" height="225" key="GridCell.Tab.2.left/0.0.1536.824/1920.0.1536.824@0.0.1536.824" timestamp="1610974546384" />
-    <state width="1481" height="225" key="GridCell.Tab.2.right" timestamp="1610974546384">
+    <state width="1481" height="200" key="GridCell.Tab.2.left/0.0.1536.824/1920.0.1536.824@0.0.1536.824" timestamp="1611038293672" />
+    <state width="1481" height="200" key="GridCell.Tab.2.right" timestamp="1611038293672">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1481" height="254" key="GridCell.Tab.2.right/0.0.1536.824/1920.0.1474.864@0.0.1536.824" timestamp="1610352573592" />
-    <state width="1481" height="225" key="GridCell.Tab.2.right/0.0.1536.824/1920.0.1536.824@0.0.1536.824" timestamp="1610974546384" />
-    <state width="1481" height="225" key="GridCell.Tab.3.bottom" timestamp="1610974546384">
+    <state width="1481" height="200" key="GridCell.Tab.2.right/0.0.1536.824/1920.0.1536.824@0.0.1536.824" timestamp="1611038293672" />
+    <state width="1481" height="200" key="GridCell.Tab.3.bottom" timestamp="1611038293672">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1481" height="254" key="GridCell.Tab.3.bottom/0.0.1536.824/1920.0.1474.864@0.0.1536.824" timestamp="1610352573593" />
-    <state width="1481" height="225" key="GridCell.Tab.3.bottom/0.0.1536.824/1920.0.1536.824@0.0.1536.824" timestamp="1610974546384" />
-    <state width="1481" height="225" key="GridCell.Tab.3.center" timestamp="1610974546384">
+    <state width="1481" height="200" key="GridCell.Tab.3.bottom/0.0.1536.824/1920.0.1536.824@0.0.1536.824" timestamp="1611038293672" />
+    <state width="1481" height="200" key="GridCell.Tab.3.center" timestamp="1611038293672">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1481" height="254" key="GridCell.Tab.3.center/0.0.1536.824/1920.0.1474.864@0.0.1536.824" timestamp="1610352573593" />
-    <state width="1481" height="225" key="GridCell.Tab.3.center/0.0.1536.824/1920.0.1536.824@0.0.1536.824" timestamp="1610974546384" />
-    <state width="1481" height="225" key="GridCell.Tab.3.left" timestamp="1610974546384">
+    <state width="1481" height="200" key="GridCell.Tab.3.center/0.0.1536.824/1920.0.1536.824@0.0.1536.824" timestamp="1611038293672" />
+    <state width="1481" height="200" key="GridCell.Tab.3.left" timestamp="1611038293672">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1481" height="254" key="GridCell.Tab.3.left/0.0.1536.824/1920.0.1474.864@0.0.1536.824" timestamp="1610352573593" />
-    <state width="1481" height="225" key="GridCell.Tab.3.left/0.0.1536.824/1920.0.1536.824@0.0.1536.824" timestamp="1610974546384" />
-    <state width="1481" height="225" key="GridCell.Tab.3.right" timestamp="1610974546384">
+    <state width="1481" height="200" key="GridCell.Tab.3.left/0.0.1536.824/1920.0.1536.824@0.0.1536.824" timestamp="1611038293672" />
+    <state width="1481" height="200" key="GridCell.Tab.3.right" timestamp="1611038293672">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1481" height="254" key="GridCell.Tab.3.right/0.0.1536.824/1920.0.1474.864@0.0.1536.824" timestamp="1610352573593" />
-    <state width="1481" height="225" key="GridCell.Tab.3.right/0.0.1536.824/1920.0.1536.824@0.0.1536.824" timestamp="1610974546384" />
+    <state width="1481" height="200" key="GridCell.Tab.3.right/0.0.1536.824/1920.0.1536.824@0.0.1536.824" timestamp="1611038293672" />
     <state width="775" height="419" key="XDebugger.FullValuePopup" timestamp="1610973134966">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="775" height="419" key="XDebugger.FullValuePopup/0.0.1536.824/1920.0.1536.824@0.0.1536.824" timestamp="1610973134966" />
-    <state x="387" y="142" width="986" height="682" key="find.popup" timestamp="1610954612695">
+    <state x="387" y="142" width="986" height="682" key="find.popup" timestamp="1611036801120">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="387" y="142" width="986" height="682" key="find.popup/0.0.1536.824/1920.0.1536.824@0.0.1536.824" timestamp="1610954612695" />
+    <state x="387" y="142" width="986" height="682" key="find.popup/0.0.1536.824/1920.0.1536.824@0.0.1536.824" timestamp="1611036801120" />
     <state x="387" y="144" width="762" height="536" key="find.popup/0.0.1536.824@0.0.1536.824" timestamp="1609511217156" />
-    <state x="431" y="145" width="840" height="678" key="search.everywhere.popup" timestamp="1610974296341">
+    <state x="431" y="145" width="840" height="678" key="search.everywhere.popup" timestamp="1611037888363">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="431" y="145" width="840" height="678" key="search.everywhere.popup/0.0.1536.824/1920.0.1536.824@0.0.1536.824" timestamp="1610974296341" />
+    <state x="431" y="145" width="840" height="678" key="search.everywhere.popup/0.0.1536.824/1920.0.1536.824@0.0.1536.824" timestamp="1611037888363" />
     <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1609511973949" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/com.unity.render-pipelines.universal/Runtime/Passes/PostProcessPass.cs</url>
-          <line>374</line>
-          <properties documentPath="$PROJECT_DIR$/com.unity.render-pipelines.universal/Runtime/Passes/PostProcessPass.cs" initialLine="374">
-            <startOffsets>
-              <option value="16423" />
-            </startOffsets>
-            <endOffsets>
-              <option value="16533" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="62" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/com.unity.render-pipelines.universal/Runtime/ScriptableRenderer.cs</url>
-          <line>771</line>
-          <properties documentPath="$PROJECT_DIR$/com.unity.render-pipelines.universal/Runtime/ScriptableRenderer.cs" initialLine="771">
-            <startOffsets>
-              <option value="44914" />
-            </startOffsets>
-            <endOffsets>
-              <option value="45055" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="69" />
-        </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/com.unity.render-pipelines.universal/Runtime/ScriptableRenderer.cs</url>
           <line>251</line>
@@ -261,42 +254,29 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/com.unity.render-pipelines.universal/Runtime/ScriptableRenderer.cs</url>
-          <line>531</line>
-          <properties documentPath="$PROJECT_DIR$/com.unity.render-pipelines.universal/Runtime/ScriptableRenderer.cs" initialLine="531">
-            <startOffsets>
-              <option value="29565" />
-            </startOffsets>
-            <endOffsets>
-              <option value="29633" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="71" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/com.unity.render-pipelines.universal/Runtime/ScriptableRenderer.cs</url>
-          <line>794</line>
-          <properties documentPath="$PROJECT_DIR$/com.unity.render-pipelines.universal/Runtime/ScriptableRenderer.cs" initialLine="794">
-            <startOffsets>
-              <option value="46145" />
-            </startOffsets>
-            <endOffsets>
-              <option value="46191" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="72" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/com.unity.render-pipelines.universal/Runtime/ScriptableRenderer.cs</url>
-          <line>856</line>
+          <line>866</line>
           <properties documentPath="$PROJECT_DIR$/com.unity.render-pipelines.universal/Runtime/ScriptableRenderer.cs" initialLine="856">
             <startOffsets>
-              <option value="49206" />
+              <option value="49611" />
             </startOffsets>
             <endOffsets>
-              <option value="49250" />
+              <option value="49655" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="73" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/com.unity.render-pipelines.universal/Runtime/RenderingUtils.cs</url>
+          <line>284</line>
+          <properties documentPath="$PROJECT_DIR$/com.unity.render-pipelines.universal/Runtime/RenderingUtils.cs" initialLine="284">
+            <startOffsets>
+              <option value="13271" />
+            </startOffsets>
+            <endOffsets>
+              <option value="13385" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="79" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

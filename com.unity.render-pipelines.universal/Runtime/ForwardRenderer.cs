@@ -216,10 +216,9 @@ namespace UnityEngine.Rendering.Universal
 
             // If camera requires depth and there's no depth pre-pass we create a depth texture that can be read later by effect requiring it.
             bool createDepthTexture = cameraData.requiresDepthTexture && !requiresDepthPrepass;
-            if (OptimizeFinalBlit)  // Just create depth color texture when create color texture.
+            if (RenderingUtils.ShouldUseFinalBlitOptimize(ref cameraData))  // Don't create depth texture.
             {
-                if(createColorTexture)
-                    createDepthTexture |= (cameraData.renderType == CameraRenderType.Base && !cameraData.resolveFinalTarget);
+
             }
             else
             {
@@ -440,7 +439,7 @@ namespace UnityEngine.Rendering.Universal
                     // offscreen camera rendering to a texture, we don't need a blit pass to resolve to screen
                     m_ActiveCameraColorAttachment == RenderTargetHandle.CameraTarget;
 
-                if (OptimizeFinalBlit) // Never execute final blit.
+                if (RenderingUtils.ShouldUseFinalBlitOptimize(ref cameraData)) // Never execute final blit.
                 {
 
                 }
@@ -459,7 +458,7 @@ namespace UnityEngine.Rendering.Universal
             // stay in RT so we resume rendering on stack after post-processing
             else if (applyPostProcessing)
             {
-                if (OptimizeFinalBlit) // Directly Blit to camera target.
+                if (RenderingUtils.ShouldUseFinalBlitOptimize(ref cameraData)) // Directly Blit to camera target.
                 {
                     m_PostProcessPass.Setup(cameraTargetDescriptor, m_ActiveCameraColorAttachment,
                         RenderTargetHandle.CameraTarget,
@@ -606,7 +605,7 @@ namespace UnityEngine.Rendering.Universal
         /// <returns>Return true if pipeline needs to render to a intermediate render texture.</returns>
         bool RequiresIntermediateColorTexture(ref CameraData cameraData)
         {
-            if (OptimizeFinalBlit)  // Just skip.
+            if (RenderingUtils.ShouldUseFinalBlitOptimize(ref cameraData))  // Just skip.
             {
 
             }

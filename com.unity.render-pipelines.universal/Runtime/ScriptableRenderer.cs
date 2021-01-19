@@ -36,8 +36,6 @@ namespace UnityEngine.Rendering.Universal
             public bool cameraStacking { get; set; } = false;
         }
 
-        public static bool OptimizeFinalBlit = false;
-
         /// <summary>
         /// The renderer we are currently rendering with, for low-level render control only.
         /// <c>current</c> is null outside rendering scope.
@@ -572,7 +570,7 @@ namespace UnityEngine.Rendering.Universal
             renderPass.Configure(cmd, cameraData.cameraTargetDescriptor);
             renderPass.eyeIndex = eyeIndex;
 
-            if (OptimizeFinalBlit) // Don't set pass attachments to overlay camera.
+            if (RenderingUtils.ShouldUseFinalBlitOptimize(ref cameraData)) // Don't set pass attachments to overlay camera.
             {
                 if (cameraData.renderType == CameraRenderType.Base)
                 {
