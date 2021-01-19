@@ -54,6 +54,8 @@ namespace UnityEngine.Rendering.Universal
         Material m_SamplingMaterial;
         Material m_ScreenspaceShadowsMaterial;
 
+        public bool PostProcessColorInstead;
+
         public ForwardRenderer(ForwardRendererData data) : base(data)
         {
             m_BlitMaterial = CoreUtils.CreateEngineMaterial(data.shaders.blitPS);
@@ -210,15 +212,14 @@ namespace UnityEngine.Rendering.Universal
 #if ENABLE_VR && ENABLE_VR_MODULE
             isRunningHololens = UniversalRenderPipeline.IsRunningHololens(camera);
 #endif
-            bool createColorTexture = RequiresIntermediateColorTexture(ref cameraData);
+            bool createColorTexture = RequiresIntermediateColorTexture(ref cameraData, ref renderingData);
             createColorTexture |= (rendererFeatures.Count != 0 && !isRunningHololens);
             createColorTexture &= !isPreviewCamera;
 
             // If camera requires depth and there's no depth pre-pass we create a depth texture that can be read later by effect requiring it.
             bool createDepthTexture = cameraData.requiresDepthTexture && !requiresDepthPrepass;
-            if (RenderingUtils.ShouldUseFinalBlitOptimize(ref cameraData))  // Don't create depth texture.
+            if (RenderingUtils.ShouldUseFinalBlitOptimize(ref cameraData, ref renderingData))  // Don't create depth texture.
             {
-
             }
             else
             {
@@ -255,7 +256,15 @@ namespace UnityEngine.Rendering.Universal
             }
             else
             {
-                m_ActiveCameraColorAttachment = m_CameraColorAttachment;
+                if (UniversalRenderPipeline.asset.optimizePostExtraBlit) // Just use m_AfterPostProcessColor.
+                {
+                    m_ActiveCameraColorAttachment = m_AfterPostProcessColor;
+                }
+                else
+                {
+                    m_ActiveCameraColorAttachment = m_CameraColorAttachment;
+                }
+
                 m_ActiveCameraDepthAttachment = m_CameraDepthAttachment;
             }
 
@@ -439,7 +448,7 @@ namespace UnityEngine.Rendering.Universal
                     // offscreen camera rendering to a texture, we don't need a blit pass to resolve to screen
                     m_ActiveCameraColorAttachment == RenderTargetHandle.CameraTarget;
 
-                if (RenderingUtils.ShouldUseFinalBlitOptimize(ref cameraData)) // Never execute final blit.
+                if (RenderingUtils.ShouldUseFinalBlitOptimize(ref cameraData, ref renderingData)) // Don't execute final blit.
                 {
 
                 }
@@ -454,22 +463,12 @@ namespace UnityEngine.Rendering.Universal
                 }
 
             }
-
             // stay in RT so we resume rendering on stack after post-processing
             else if (applyPostProcessing)
             {
-                if (RenderingUtils.ShouldUseFinalBlitOptimize(ref cameraData)) // Directly Blit to camera target.
-                {
-                    m_PostProcessPass.Setup(cameraTargetDescriptor, m_ActiveCameraColorAttachment,
-                        RenderTargetHandle.CameraTarget,
-                        m_ActiveCameraDepthAttachment, m_ColorGradingLut, false, false);
-                }
-                else
-                {
-                    m_PostProcessPass.Setup(cameraTargetDescriptor, m_ActiveCameraColorAttachment,
-                        m_AfterPostProcessColor,
-                        m_ActiveCameraDepthAttachment, m_ColorGradingLut, false, false);
-                }
+                m_PostProcessPass.Setup(cameraTargetDescriptor, m_ActiveCameraColorAttachment,
+                    m_AfterPostProcessColor,
+                    m_ActiveCameraDepthAttachment, m_ColorGradingLut, false, false);
 
                 EnqueuePass(m_PostProcessPass);
             }
@@ -603,9 +602,9 @@ namespace UnityEngine.Rendering.Universal
         /// <param name="cameraData">CameraData contains all relevant render target information for the camera.</param>
         /// <seealso cref="CameraData"/>
         /// <returns>Return true if pipeline needs to render to a intermediate render texture.</returns>
-        bool RequiresIntermediateColorTexture(ref CameraData cameraData)
+        bool RequiresIntermediateColorTexture(ref CameraData cameraData, ref RenderingData renderingData)
         {
-            if (RenderingUtils.ShouldUseFinalBlitOptimize(ref cameraData))  // Just skip.
+            if (RenderingUtils.ShouldUseFinalBlitOptimize(ref cameraData, ref renderingData))  // Just skip.
             {
 
             }

@@ -204,6 +204,7 @@ namespace UnityEngine.Rendering.Universal
 
         // Tunning setting
         [SerializeField] bool m_UseFinalBlitOptimize = false;
+        [SerializeField] private bool m_OptimizePostExtraBlit = false;
 
 
         // Deprecated settings
@@ -731,6 +732,12 @@ namespace UnityEngine.Rendering.Universal
        {
            get { return m_UseFinalBlitOptimize; }
            set { m_UseFinalBlitOptimize = value; }
+       }
+
+       public bool optimizePostExtraBlit
+       {
+           get { return m_OptimizePostExtraBlit; }
+           set { m_OptimizePostExtraBlit = value; }
        }
 
         public override Material defaultMaterial

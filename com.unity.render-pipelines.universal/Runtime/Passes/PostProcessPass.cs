@@ -373,7 +373,9 @@ namespace UnityEngine.Rendering.Universal.Internal
                 // Overlay cameras need to output to the target described in the base camera while doing camera stack.
                 RenderTargetIdentifier cameraTarget = (cameraData.targetTexture != null) ? new RenderTargetIdentifier(cameraData.targetTexture) : BuiltinRenderTextureType.CameraTarget;
                 cameraTarget = (m_Destination == RenderTargetHandle.CameraTarget) ? cameraTarget : m_Destination.Identifier();
-                cmd.SetRenderTarget(cameraTarget, colorLoadAction, RenderBufferStoreAction.Store, RenderBufferLoadAction.DontCare, RenderBufferStoreAction.DontCare);
+
+                cmd.SetRenderTarget(cameraTarget, colorLoadAction, RenderBufferStoreAction.Store,
+                    RenderBufferLoadAction.DontCare, RenderBufferStoreAction.DontCare);
 
                 // With camera stacking we not always resolve post to final screen as we might run post-processing in the middle of the stack.
                 bool finishPostProcessOnScreen = cameraData.resolveFinalTarget || (m_Destination == RenderTargetHandle.CameraTarget || m_HasFinalPass == true);
@@ -407,9 +409,16 @@ namespace UnityEngine.Rendering.Universal.Internal
                     // in the pipeline to avoid this extra blit.
                     if (!finishPostProcessOnScreen)
                     {
-                        cmd.SetGlobalTexture("_BlitTex", cameraTarget);
-                        cmd.SetRenderTarget(m_Source.id, RenderBufferLoadAction.DontCare, RenderBufferStoreAction.Store, RenderBufferLoadAction.DontCare, RenderBufferStoreAction.DontCare);
-                        cmd.DrawMesh(RenderingUtils.fullscreenMesh, Matrix4x4.identity, m_BlitMaterial);
+                        if (UniversalRenderPipeline.asset.optimizePostExtraBlit) // Avoid blit.
+                        {
+
+                        }
+                        else
+                        {
+                            cmd.SetGlobalTexture("_BlitTex", cameraTarget);
+                            cmd.SetRenderTarget(m_Source.id, RenderBufferLoadAction.DontCare, RenderBufferStoreAction.Store, RenderBufferLoadAction.DontCare, RenderBufferStoreAction.DontCare);
+                            cmd.DrawMesh(RenderingUtils.fullscreenMesh, Matrix4x4.identity, m_BlitMaterial);
+                        }
                     }
 
                     cmd.SetViewProjectionMatrices(cameraData.camera.worldToCameraMatrix, cameraData.camera.projectionMatrix);

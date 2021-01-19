@@ -570,17 +570,7 @@ namespace UnityEngine.Rendering.Universal
             renderPass.Configure(cmd, cameraData.cameraTargetDescriptor);
             renderPass.eyeIndex = eyeIndex;
 
-            if (RenderingUtils.ShouldUseFinalBlitOptimize(ref cameraData)) // Don't set pass attachments to overlay camera.
-            {
-                if (cameraData.renderType == CameraRenderType.Base)
-                {
-                    SetRenderPassAttachments(cmd, renderPass, ref cameraData, ref firstTimeStereo);
-                }
-            }
-            else
-            {
-                SetRenderPassAttachments(cmd, renderPass, ref cameraData, ref firstTimeStereo);
-            }
+            SetRenderPassAttachments(cmd, renderPass, ref cameraData, ref firstTimeStereo);
 
             // We must execute the commands recorded at this point because potential call to context.StartMultiEye(cameraData.camera) below will alter internal renderer states
             // Also, we execute the commands recorded at this point to ensure SetRenderTarget is called before RenderPass.Execute

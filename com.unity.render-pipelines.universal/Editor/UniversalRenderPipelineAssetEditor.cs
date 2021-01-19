@@ -78,7 +78,7 @@ namespace UnityEditor.Rendering.Universal
 
             // URP tunning settings
             public static GUIContent useFinalBlitOptimize = EditorGUIUtility.TrTextContent("Use final blit optimize", "Directly render to camera target, no final blit");
-
+            public static GUIContent optimizePostExtraBlit = EditorGUIUtility.TrTextContent("Optimize postprocessing extra blit", "when render post-processing in the middle of the camera stack (not resolving to screen), no extra blit to ping pong results back to color texture");
 
             // Renderer List Messages
             public static GUIContent rendererListDefaultMessage =
@@ -152,6 +152,7 @@ namespace UnityEditor.Rendering.Universal
         SerializedProperty m_UseAdaptivePerformance;
 
         SerializedProperty m_UseFinalBlitOptimize;
+        SerializedProperty m_OptimizePostExtraBlit;
 
 
         public override void OnInspectorGUI()
@@ -232,6 +233,8 @@ namespace UnityEditor.Rendering.Universal
             selectedLightRenderingMode = (LightRenderingMode)m_AdditionalLightsRenderingModeProp.intValue;
 
             m_UseFinalBlitOptimize = serializedObject.FindProperty("m_UseFinalBlitOptimize");
+            m_OptimizePostExtraBlit = serializedObject.FindProperty("m_OptimizePostExtraBlit");
+
         }
 
         void DrawGeneralSettings()
@@ -436,6 +439,7 @@ namespace UnityEditor.Rendering.Universal
             {
                 EditorGUI.indentLevel++;
                 EditorGUILayout.PropertyField(m_UseFinalBlitOptimize, Styles.useFinalBlitOptimize);
+                EditorGUILayout.PropertyField(m_OptimizePostExtraBlit, Styles.optimizePostExtraBlit);
                 EditorGUI.indentLevel--;
                 EditorGUILayout.Space();
                 EditorGUILayout.Space();

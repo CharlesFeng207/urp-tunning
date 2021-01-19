@@ -280,9 +280,12 @@ namespace UnityEngine.Rendering.Universal
             return support;
         }
 
-        public static bool ShouldUseFinalBlitOptimize(ref CameraData camera)
+        public static bool ShouldUseFinalBlitOptimize(ref CameraData camera, ref RenderingData renderingData)
         {
-            return UniversalRenderPipeline.asset.useFinalBlitOptimize && !camera.isSceneViewCamera && !camera.isPreviewCamera;
+            return UniversalRenderPipeline.asset.useFinalBlitOptimize
+                   && !camera.isSceneViewCamera
+                   && !camera.isPreviewCamera
+                   && !renderingData.postProcessingEnabled;
         }
 
         /// <summary>
