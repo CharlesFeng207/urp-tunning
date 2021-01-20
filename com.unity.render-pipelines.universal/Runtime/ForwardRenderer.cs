@@ -218,12 +218,10 @@ namespace UnityEngine.Rendering.Universal
 
             // If camera requires depth and there's no depth pre-pass we create a depth texture that can be read later by effect requiring it.
             bool createDepthTexture = cameraData.requiresDepthTexture && !requiresDepthPrepass;
-            if (RenderingUtils.ShouldUseFinalBlitOptimize(ref cameraData, ref renderingData))  // Don't create depth texture.
+            if (!RenderingUtils.ShouldRenderOnFB(ref cameraData, ref renderingData)) // Don't create depth texture.
             {
-            }
-            else
-            {
-                createDepthTexture |= (cameraData.renderType == CameraRenderType.Base && !cameraData.resolveFinalTarget);
+                createDepthTexture |=
+                    (cameraData.renderType == CameraRenderType.Base && !cameraData.resolveFinalTarget);
             }
 
 #if UNITY_ANDROID || UNITY_WEBGL
@@ -246,7 +244,7 @@ namespace UnityEngine.Rendering.Universal
                 // Doesn't create texture for Overlay cameras as they are already overlaying on top of created textures.
                 bool createTextures = intermediateRenderTexture;
                 if (createTextures)
-                    CreateCameraRenderTarget(context, ref renderingData.cameraData);
+                    CreateCameraRenderTarget(context, ref renderingData.cameraData, ref renderingData);
 
                 // if rendering to intermediate render texture we don't have to create msaa backbuffer
                 int backbufferMsaaSamples = (intermediateRenderTexture) ? 1 : cameraTargetDescriptor.msaaSamples;
@@ -448,11 +446,7 @@ namespace UnityEngine.Rendering.Universal
                     // offscreen camera rendering to a texture, we don't need a blit pass to resolve to screen
                     m_ActiveCameraColorAttachment == RenderTargetHandle.CameraTarget;
 
-                if (RenderingUtils.ShouldUseFinalBlitOptimize(ref cameraData, ref renderingData)) // Don't execute final blit.
-                {
-
-                }
-                else
+                if (!RenderingUtils.ShouldRenderOnFB(ref cameraData, ref renderingData)) // Don't execute final blit.
                 {
                     // We need final blit to resolve to screen
                     if (!cameraTargetResolved)
@@ -461,7 +455,6 @@ namespace UnityEngine.Rendering.Universal
                         EnqueuePass(m_FinalBlitPass);
                     }
                 }
-
             }
             // stay in RT so we resume rendering on stack after post-processing
             else if (applyPostProcessing)
@@ -532,7 +525,7 @@ namespace UnityEngine.Rendering.Universal
             }
         }
 
-        void CreateCameraRenderTarget(ScriptableRenderContext context, ref CameraData cameraData)
+        void CreateCameraRenderTarget(ScriptableRenderContext context, ref CameraData cameraData, ref RenderingData renderingData)
         {
             CommandBuffer cmd = CommandBufferPool.Get(k_CreateCameraTextures);
             var descriptor = cameraData.cameraTargetDescriptor;
@@ -555,7 +548,7 @@ namespace UnityEngine.Rendering.Universal
                 depthDescriptor.colorFormat = RenderTextureFormat.Depth;
                 depthDescriptor.depthBufferBits = k_DepthStencilBufferBits;
 
-                if(UniversalRenderPipeline.asset.depthBufferMemoryless)
+                if(UniversalRenderPipeline.asset.depthBufferMemoryless && !renderingData.postProcessingEnabled)
                     depthDescriptor.memoryless = RenderTextureMemoryless.Depth;
 
                 cmd.GetTemporaryRT(m_ActiveCameraDepthAttachment.id, depthDescriptor, FilterMode.Point);
@@ -608,11 +601,7 @@ namespace UnityEngine.Rendering.Universal
         /// <returns>Return true if pipeline needs to render to a intermediate render texture.</returns>
         bool RequiresIntermediateColorTexture(ref CameraData cameraData, ref RenderingData renderingData)
         {
-            if (RenderingUtils.ShouldUseFinalBlitOptimize(ref cameraData, ref renderingData))  // Just skip.
-            {
-
-            }
-            else
+            if (!RenderingUtils.ShouldRenderOnFB(ref cameraData, ref renderingData)) // Skip intermediate color texture check.
             {
                 // When rendering a camera stack we always create an intermediate render texture to composite camera results.
                 // We create it upon rendering the Base camera.

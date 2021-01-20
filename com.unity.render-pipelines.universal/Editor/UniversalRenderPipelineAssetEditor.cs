@@ -77,7 +77,7 @@ namespace UnityEditor.Rendering.Universal
             public static GUIContent useAdaptivePerformance = EditorGUIUtility.TrTextContent("Use adaptive performance", "Allows Adaptive Performance to adjust rendering quality during runtime");
 
             // URP tunning settings
-            public static GUIContent useFinalBlitOptimize = EditorGUIUtility.TrTextContent("Use final blit optimize", "Directly render to camera target, no final blit");
+            public static GUIContent renderOnFB = EditorGUIUtility.TrTextContent("Render on FB", "Directly render on default framebuffer, no final blit");
             public static GUIContent optimizePostExtraBlit = EditorGUIUtility.TrTextContent("Optimize postprocessing extra blit", "when render post-processing in the middle of the camera stack (not resolving to screen), no extra blit to ping pong results back to color texture");
             public static GUIContent customUberPost = EditorGUIUtility.TrTextContent("Custom uber post", "Custom uber post");
             public static GUIContent customBloom = EditorGUIUtility.TrTextContent("Custom bloom", "Custom bloom");
@@ -155,7 +155,7 @@ namespace UnityEditor.Rendering.Universal
 
         SerializedProperty m_UseAdaptivePerformance;
 
-        SerializedProperty m_UseFinalBlitOptimize;
+        SerializedProperty m_RenderOnFB;
         SerializedProperty m_OptimizePostExtraBlit;
         SerializedProperty m_CustomUberPost;
         SerializedProperty m_CustomBloom;
@@ -240,7 +240,7 @@ namespace UnityEditor.Rendering.Universal
 
             selectedLightRenderingMode = (LightRenderingMode)m_AdditionalLightsRenderingModeProp.intValue;
 
-            m_UseFinalBlitOptimize = serializedObject.FindProperty("m_UseFinalBlitOptimize");
+            m_RenderOnFB = serializedObject.FindProperty("m_RenderOnFB");
             m_OptimizePostExtraBlit = serializedObject.FindProperty("m_OptimizePostExtraBlit");
             m_CustomUberPost = serializedObject.FindProperty("m_CustomUberPost");
             m_CustomBloom = serializedObject.FindProperty("m_CustomBloom");
@@ -449,7 +449,7 @@ namespace UnityEditor.Rendering.Universal
             if (m_TunningFoldout.value)
             {
                 EditorGUI.indentLevel++;
-                EditorGUILayout.PropertyField(m_UseFinalBlitOptimize, Styles.useFinalBlitOptimize);
+                EditorGUILayout.PropertyField(m_RenderOnFB, Styles.renderOnFB);
                 EditorGUILayout.PropertyField(m_OptimizePostExtraBlit, Styles.optimizePostExtraBlit);
                 EditorGUILayout.PropertyField(m_CustomUberPost, Styles.customUberPost);
                 EditorGUILayout.PropertyField(m_CustomBloom, Styles.customBloom);

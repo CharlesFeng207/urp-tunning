@@ -280,9 +280,9 @@ namespace UnityEngine.Rendering.Universal
             return support;
         }
 
-        public static bool ShouldUseFinalBlitOptimize(ref CameraData camera, ref RenderingData renderingData)
+        public static bool ShouldRenderOnFB(ref CameraData camera, ref RenderingData renderingData)
         {
-            return UniversalRenderPipeline.asset.useFinalBlitOptimize
+            return UniversalRenderPipeline.asset.renderOnFB
                    && !camera.isSceneViewCamera
                    && !camera.isPreviewCamera
                    && !renderingData.postProcessingEnabled;

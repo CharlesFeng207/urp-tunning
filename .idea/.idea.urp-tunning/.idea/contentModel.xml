@@ -12,9 +12,14 @@
         </e>
         <e p="Scripts" t="Include">
           <e p="BloomTest.cs" t="Include" />
+          <e p="CustomBloomTest.cs" t="Include" />
+          <e p="CustomBloomWithBlurTest.cs" t="Include" />
+          <e p="CustomUberTest.cs" t="Include" />
           <e p="FPSDisplay.cs" t="Include" />
+          <e p="MemorylessTest.cs" t="Include" />
           <e p="OptimizeFinalBlitTest.cs" t="Include" />
           <e p="OptimizePostExtraBlitTest.cs" t="Include" />
+          <e p="RenderTextureTest.cs" t="Include" />
           <e p="SceneTest.cs" t="Include" />
           <e p="SimpleCameraController.cs" t="Include" />
           <e p="SRPBatcherTest.cs" t="Include" />

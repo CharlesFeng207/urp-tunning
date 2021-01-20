@@ -203,7 +203,7 @@ namespace UnityEngine.Rendering.Universal
         [SerializeField] int m_ColorGradingLutSize = 32;
 
         // Tunning setting
-        [SerializeField] bool m_UseFinalBlitOptimize = false;
+        [SerializeField] bool m_RenderOnFB = false;
         [SerializeField] bool m_OptimizePostExtraBlit = false;
         [SerializeField] bool m_CustomUberPost = false;
         [SerializeField] bool m_CustomBloom = false;
@@ -731,10 +731,10 @@ namespace UnityEngine.Rendering.Universal
             set { m_UseAdaptivePerformance = value; }
         }
 
-       public bool useFinalBlitOptimize
+       public bool renderOnFB
        {
-           get { return m_UseFinalBlitOptimize; }
-           set { m_UseFinalBlitOptimize = value; }
+           get { return m_RenderOnFB; }
+           set { m_RenderOnFB = value; }
        }
 
        public bool optimizePostExtraBlit
