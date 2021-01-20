@@ -300,6 +300,7 @@ namespace UnityEngine.Rendering.Universal
         public bool clearDepth
         {
             get => m_ClearDepth;
+            set => m_ClearDepth = value;
         }
 
         /// <summary>
