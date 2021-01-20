@@ -256,7 +256,7 @@ namespace UnityEngine.Rendering.Universal
             }
             else
             {
-                if (UniversalRenderPipeline.asset.optimizePostExtraBlit) // Just use m_AfterPostProcessColor.
+                if(renderingData.postProcessingEnabled && UniversalRenderPipeline.asset.optimizePostExtraBlit) // Just use m_AfterPostProcessColor.
                 {
                     m_ActiveCameraColorAttachment = m_AfterPostProcessColor;
                 }
@@ -296,7 +296,7 @@ namespace UnityEngine.Rendering.Universal
                 EnqueuePass(m_DepthPrepass);
             }
 
-            if (generateColorGradingLUT)
+            if (generateColorGradingLUT && !UniversalRenderPipeline.asset.customUberPost) // Custom uber post don't need LUT.
             {
                 m_ColorGradingLutPass.Setup(m_ColorGradingLut);
                 EnqueuePass(m_ColorGradingLutPass);
@@ -554,6 +554,7 @@ namespace UnityEngine.Rendering.Universal
                 depthDescriptor.autoGenerateMips = false;
                 depthDescriptor.colorFormat = RenderTextureFormat.Depth;
                 depthDescriptor.depthBufferBits = k_DepthStencilBufferBits;
+
                 cmd.GetTemporaryRT(m_ActiveCameraDepthAttachment.id, depthDescriptor, FilterMode.Point);
             }
 

@@ -79,6 +79,9 @@ namespace UnityEditor.Rendering.Universal
             // URP tunning settings
             public static GUIContent useFinalBlitOptimize = EditorGUIUtility.TrTextContent("Use final blit optimize", "Directly render to camera target, no final blit");
             public static GUIContent optimizePostExtraBlit = EditorGUIUtility.TrTextContent("Optimize postprocessing extra blit", "when render post-processing in the middle of the camera stack (not resolving to screen), no extra blit to ping pong results back to color texture");
+            public static GUIContent customUberPost = EditorGUIUtility.TrTextContent("Custom uber post", "Custom uber post");
+            public static GUIContent customBloom = EditorGUIUtility.TrTextContent("Custom bloom", "Custom bloom");
+            public static GUIContent customBloomWithBlur = EditorGUIUtility.TrTextContent("Custom bloom with blur", "Custom bloom with blur");
 
             // Renderer List Messages
             public static GUIContent rendererListDefaultMessage =
@@ -153,7 +156,9 @@ namespace UnityEditor.Rendering.Universal
 
         SerializedProperty m_UseFinalBlitOptimize;
         SerializedProperty m_OptimizePostExtraBlit;
-
+        SerializedProperty m_CustomUberPost;
+        SerializedProperty m_CustomBloom;
+        SerializedProperty m_CustomBloomWithBlur;
 
         public override void OnInspectorGUI()
         {
@@ -234,7 +239,9 @@ namespace UnityEditor.Rendering.Universal
 
             m_UseFinalBlitOptimize = serializedObject.FindProperty("m_UseFinalBlitOptimize");
             m_OptimizePostExtraBlit = serializedObject.FindProperty("m_OptimizePostExtraBlit");
-
+            m_CustomUberPost = serializedObject.FindProperty("m_CustomUberPost");
+            m_CustomBloom = serializedObject.FindProperty("m_CustomBloom");
+            m_CustomBloomWithBlur = serializedObject.FindProperty("m_CustomBloomWithBlur");
         }
 
         void DrawGeneralSettings()
@@ -440,6 +447,10 @@ namespace UnityEditor.Rendering.Universal
                 EditorGUI.indentLevel++;
                 EditorGUILayout.PropertyField(m_UseFinalBlitOptimize, Styles.useFinalBlitOptimize);
                 EditorGUILayout.PropertyField(m_OptimizePostExtraBlit, Styles.optimizePostExtraBlit);
+                EditorGUILayout.PropertyField(m_CustomUberPost, Styles.customUberPost);
+                EditorGUILayout.PropertyField(m_CustomBloom, Styles.customBloom);
+                EditorGUILayout.PropertyField(m_CustomBloomWithBlur, Styles.customBloomWithBlur);
+
                 EditorGUI.indentLevel--;
                 EditorGUILayout.Space();
                 EditorGUILayout.Space();

@@ -135,6 +135,8 @@ namespace UnityEngine.Rendering.Universal.Internal
             m_IsFinalPass = false;
             m_HasFinalPass = hasFinalPass;
             m_EnableSRGBConversionIfNeeded = enableSRGBConversion;
+
+            SetupUber();
         }
 
         public void SetupFinalPass(in RenderTargetHandle source)
@@ -144,6 +146,8 @@ namespace UnityEngine.Rendering.Universal.Internal
             m_IsFinalPass = true;
             m_HasFinalPass = false;
             m_EnableSRGBConversionIfNeeded = true;
+
+            SetupUber();
         }
 
         public override void Configure(CommandBuffer cmd, RenderTextureDescriptor cameraTextureDescriptor)
@@ -209,6 +213,12 @@ namespace UnityEngine.Rendering.Universal.Internal
             }
 
             m_ResetHistory = false;
+        }
+
+        void SetupUber()
+        {
+            m_Materials.CurrentUber =
+                UniversalRenderPipeline.asset.customUberPost ? m_Materials.uber_Custom : m_Materials.uber;
         }
 
         RenderTextureDescriptor GetStereoCompatibleDescriptor()
@@ -339,28 +349,31 @@ namespace UnityEngine.Rendering.Universal.Internal
             using (new ProfilingScope(cmd, ProfilingSampler.Get(URPProfileId.UberPostProcess)))
             {
                 // Reset uber keywords
-                m_Materials.uber.shaderKeywords = null;
+                m_Materials.CurrentUber.shaderKeywords = null;
 
                 // Bloom goes first
                 bool bloomActive = m_Bloom.IsActive();
                 if (bloomActive)
                 {
                     using (new ProfilingScope(cmd, ProfilingSampler.Get(URPProfileId.Bloom)))
-                        SetupBloom(cmd, GetSource(), m_Materials.uber);
+                        SetupBloom(cmd, GetSource(), m_Materials.CurrentUber);
                 }
 
-                // Setup other effects constants
-                SetupLensDistortion(m_Materials.uber, isSceneViewCamera);
-                SetupChromaticAberration(m_Materials.uber);
-                SetupVignette(m_Materials.uber);
-                SetupColorGrading(cmd, ref renderingData, m_Materials.uber);
+                if (!UniversalRenderPipeline.asset.customUberPost)
+                {
+                    // Setup other effects constants
+                    SetupLensDistortion(m_Materials.CurrentUber, isSceneViewCamera);
+                    SetupChromaticAberration(m_Materials.CurrentUber);
+                    SetupVignette(m_Materials.CurrentUber);
+                    SetupColorGrading(cmd, ref renderingData, m_Materials.CurrentUber);
 
-                // Only apply dithering & grain if there isn't a final pass.
-                SetupGrain(cameraData, m_Materials.uber);
-                SetupDithering(cameraData, m_Materials.uber);
+                    // Only apply dithering & grain if there isn't a final pass.
+                    SetupGrain(cameraData, m_Materials.CurrentUber);
+                    SetupDithering(cameraData, m_Materials.CurrentUber);
 
-                if (RequireSRGBConversionBlitToBackBuffer(cameraData) && m_EnableSRGBConversionIfNeeded)
-                    m_Materials.uber.EnableKeyword(ShaderKeywordStrings.LinearToSRGBConversion);
+                    if (RequireSRGBConversionBlitToBackBuffer(cameraData) && m_EnableSRGBConversionIfNeeded)
+                        m_Materials.CurrentUber.EnableKeyword(ShaderKeywordStrings.LinearToSRGBConversion);
+                }
 
                 // Done with Uber, blit it
                 cmd.SetGlobalTexture("_BlitTex", GetSource());
@@ -382,7 +395,7 @@ namespace UnityEngine.Rendering.Universal.Internal
 
                 if (m_IsStereo)
                 {
-                    Blit(cmd, GetSource(), BuiltinRenderTextureType.CurrentActive, m_Materials.uber);
+                    Blit(cmd, GetSource(), BuiltinRenderTextureType.CurrentActive, m_Materials.CurrentUber);
 
                     // TODO: We need a proper camera texture swap chain in URP.
                     // For now, when render post-processing in the middle of the camera stack (not resolving to screen)
@@ -401,7 +414,7 @@ namespace UnityEngine.Rendering.Universal.Internal
                     if (m_Destination == RenderTargetHandle.CameraTarget)
                         cmd.SetViewport(cameraData.pixelRect);
 
-                    cmd.DrawMesh(RenderingUtils.fullscreenMesh, Matrix4x4.identity, m_Materials.uber);
+                    cmd.DrawMesh(RenderingUtils.fullscreenMesh, Matrix4x4.identity, m_Materials.CurrentUber);
 
                     // TODO: We need a proper camera texture swap chain in URP.
                     // For now, when render post-processing in the middle of the camera stack (not resolving to screen)
@@ -409,14 +422,12 @@ namespace UnityEngine.Rendering.Universal.Internal
                     // in the pipeline to avoid this extra blit.
                     if (!finishPostProcessOnScreen)
                     {
-                        if (UniversalRenderPipeline.asset.optimizePostExtraBlit) // Avoid blit.
-                        {
-
-                        }
-                        else
+                        if (!UniversalRenderPipeline.asset.optimizePostExtraBlit) // Avoid blit.
                         {
                             cmd.SetGlobalTexture("_BlitTex", cameraTarget);
-                            cmd.SetRenderTarget(m_Source.id, RenderBufferLoadAction.DontCare, RenderBufferStoreAction.Store, RenderBufferLoadAction.DontCare, RenderBufferStoreAction.DontCare);
+                            cmd.SetRenderTarget(m_Source.id, RenderBufferLoadAction.DontCare,
+                                RenderBufferStoreAction.Store, RenderBufferLoadAction.DontCare,
+                                RenderBufferStoreAction.DontCare);
                             cmd.DrawMesh(RenderingUtils.fullscreenMesh, Matrix4x4.identity, m_BlitMaterial);
                         }
                     }
@@ -1120,7 +1131,10 @@ namespace UnityEngine.Rendering.Universal.Internal
             public readonly Material paniniProjection;
             public readonly Material bloom;
             public readonly Material uber;
+            public readonly Material uber_Custom;
             public readonly Material finalPass;
+
+            public Material CurrentUber;
 
             public MaterialLibrary(PostProcessData data)
             {
@@ -1132,6 +1146,7 @@ namespace UnityEngine.Rendering.Universal.Internal
                 paniniProjection = Load(data.shaders.paniniProjectionPS);
                 bloom = Load(data.shaders.bloomPS);
                 uber = Load(data.shaders.uberPostPS);
+                uber_Custom = Load(data.shaders.uberPostPS_Custom);
                 finalPass = Load(data.shaders.finalPostPassPS);
             }
 
@@ -1160,6 +1175,7 @@ namespace UnityEngine.Rendering.Universal.Internal
                 CoreUtils.Destroy(paniniProjection);
                 CoreUtils.Destroy(bloom);
                 CoreUtils.Destroy(uber);
+                CoreUtils.Destroy(uber_Custom);
                 CoreUtils.Destroy(finalPass);
             }
         }

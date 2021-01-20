@@ -48,8 +48,11 @@ MonoBehaviour:
   m_PostProcessingFeatureSet: 0
   m_ColorGradingMode: 0
   m_ColorGradingLutSize: 16
-  m_UseFinalBlitOptimize: 1
-  m_OptimizePostExtraBlit: 1
+  m_UseFinalBlitOptimize: 0
+  m_OptimizePostExtraBlit: 0
+  m_CustomUberPost: 1
+  m_CustomBloom: 0
+  m_CustomBloomWithBlur: 0
   m_ShadowType: 1
   m_LocalShadowsSupported: 0
   m_LocalShadowsAtlasResolution: 256

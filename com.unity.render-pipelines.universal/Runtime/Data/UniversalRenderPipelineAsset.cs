@@ -204,7 +204,10 @@ namespace UnityEngine.Rendering.Universal
 
         // Tunning setting
         [SerializeField] bool m_UseFinalBlitOptimize = false;
-        [SerializeField] private bool m_OptimizePostExtraBlit = false;
+        [SerializeField] bool m_OptimizePostExtraBlit = false;
+        [SerializeField] bool m_CustomUberPost = false;
+        [SerializeField] bool m_CustomBloom = false;
+        [SerializeField] bool m_CustomBloomWithBlur = false;
 
 
         // Deprecated settings
@@ -739,6 +742,25 @@ namespace UnityEngine.Rendering.Universal
            get { return m_OptimizePostExtraBlit; }
            set { m_OptimizePostExtraBlit = value; }
        }
+
+       public bool customUberPost
+       {
+           get { return m_CustomUberPost; }
+           set { m_CustomUberPost = value; }
+       }
+
+       public bool customBloom
+       {
+           get { return m_CustomBloom; }
+           set { m_CustomBloom = value; }
+       }
+
+       public bool customBloomWithBlur
+       {
+           get { return m_CustomBloomWithBlur; }
+           set { m_CustomBloomWithBlur = value; }
+       }
+
 
         public override Material defaultMaterial
         {
