@@ -1,22 +1,30 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.UI;
 
 public class CustomBloomWithBlurTest : MonoBehaviour
 {
     public Text Text;
-    public UniversalRenderPipelineAsset Asset;
+    public VolumeProfile Profile;
+
+    private Bloom bloom;
+    private void Awake()
+    {
+         Profile.TryGet<Bloom>(out bloom);
+    }
 
     // Update is called once per frame
     void Update()
     {
-        Text.text = $"BloomWithBlur:{Asset.customBloomWithBlur}";
+        Text.text = $"BloomWithBlur:{bloom.bloomWithBlur.value}";
     }
 
     public void OnClick()
     {
-        Asset.customBloomWithBlur = !Asset.customBloomWithBlur;
+        bloom.bloomWithBlur.value = !bloom.bloomWithBlur.value;
     }
 }

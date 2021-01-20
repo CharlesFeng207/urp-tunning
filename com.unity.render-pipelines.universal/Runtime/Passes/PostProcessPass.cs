@@ -381,9 +381,8 @@ namespace UnityEngine.Rendering.Universal.Internal
                 }
                 else
                 {
-                    var customBloomWithBlur = UniversalRenderPipeline.asset.customBloomWithBlur;
-                    CoreUtils.SetKeyword(m_Materials.CurrentUber, ShaderKeywordStrings.CustomBloomWithBlur, customBloomWithBlur);
-                    if (customBloomWithBlur)
+                    CoreUtils.SetKeyword(m_Materials.CurrentUber, ShaderKeywordStrings.CustomBloomWithBlur, m_Bloom.bloomWithBlur.value);
+                    if (m_Bloom.bloomWithBlur.value)
                     {
                         m_Materials.CurrentUber.SetFloat(ShaderConstants._BloomWithBlurStartRatio,
                             m_Bloom.bloomWithBlurStartRatio.value);
@@ -869,7 +868,7 @@ namespace UnityEngine.Rendering.Universal.Internal
             if (customBloom)
             {
                 CoreUtils.SetKeyword(bloomMaterial, ShaderKeywordStrings.CustomBloomWithBlur,
-                    asset.customBloomWithBlur);
+                    m_Bloom.bloomWithBlur.value);
             }
 
             // Prefilter

@@ -7,16 +7,15 @@ using UnityEngine.UI;
 public class RenderOnFBTest : MonoBehaviour
 {
     public Text Text;
-    public UniversalRenderPipelineAsset Asset;
 
     // Update is called once per frame
     void Update()
     {
-        Text.text = $"RenderOnFB:{Asset.renderOnFB}";
+        Text.text = $"RenderOnFB:{UniversalRenderPipeline.asset.renderOnFB}";
     }
 
     public void OnClick()
     {
-        Asset.renderOnFB = !Asset.renderOnFB;
+        UniversalRenderPipeline.asset.renderOnFB = !UniversalRenderPipeline.asset.renderOnFB;
     }
 }

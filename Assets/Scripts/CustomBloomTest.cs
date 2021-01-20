@@ -7,16 +7,15 @@ using UnityEngine.UI;
 public class CustomBloomTest : MonoBehaviour
 {
     public Text Text;
-    public UniversalRenderPipelineAsset Asset;
 
     // Update is called once per frame
     void Update()
     {
-        Text.text = $"CustomBloom:{Asset.customBloom}";
+        Text.text = $"CustomBloom:{UniversalRenderPipeline.asset.customBloom}";
     }
 
     public void OnClick()
     {
-        Asset.customBloom = !Asset.customBloom;
+        UniversalRenderPipeline.asset.customBloom = !UniversalRenderPipeline.asset.customBloom;
     }
 }

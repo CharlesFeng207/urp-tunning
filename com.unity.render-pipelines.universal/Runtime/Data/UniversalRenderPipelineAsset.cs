@@ -207,7 +207,6 @@ namespace UnityEngine.Rendering.Universal
         [SerializeField] bool m_OptimizePostExtraBlit = false;
         [SerializeField] bool m_CustomUberPost = false;
         [SerializeField] bool m_CustomBloom = false;
-        [SerializeField] bool m_CustomBloomWithBlur = false;
         [SerializeField] bool m_DepthBufferMemoryless = false;
 
         // Deprecated settings
@@ -753,12 +752,6 @@ namespace UnityEngine.Rendering.Universal
        {
            get { return m_CustomBloom; }
            set { m_CustomBloom = value; }
-       }
-
-       public bool customBloomWithBlur
-       {
-           get { return m_CustomBloomWithBlur; }
-           set { m_CustomBloomWithBlur = value; }
        }
 
        public bool depthBufferMemoryless

@@ -8,15 +8,14 @@ public class OptimizePostExtraBlitTest : MonoBehaviour
 {
     public Text Text;
 
-    public UniversalRenderPipelineAsset Asset;
     // Update is called once per frame
     void Update()
     {
-        Text.text = $"OptimizePostExtraBlit:{Asset.optimizePostExtraBlit}";
+        Text.text = $"OptimizePostExtraBlit:{UniversalRenderPipeline.asset.optimizePostExtraBlit}";
     }
 
     public void OnClick()
     {
-        Asset.optimizePostExtraBlit = !Asset.optimizePostExtraBlit;
+        UniversalRenderPipeline.asset.optimizePostExtraBlit = !UniversalRenderPipeline.asset.optimizePostExtraBlit;
     }
 }

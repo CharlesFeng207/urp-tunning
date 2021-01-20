@@ -7,16 +7,15 @@ using UnityEngine.UI;
 public class CustomUberTest : MonoBehaviour
 {
     public Text Text;
-    public UniversalRenderPipelineAsset Asset;
 
     // Update is called once per frame
     void Update()
     {
-        Text.text = $"CustomUber:{Asset.customUberPost}";
+        Text.text = $"CustomUber:{UniversalRenderPipeline.asset.customUberPost}";
     }
 
     public void OnClick()
     {
-        Asset.customUberPost = !Asset.customUberPost;
+        UniversalRenderPipeline.asset.customUberPost = !UniversalRenderPipeline.asset.customUberPost;
     }
 }

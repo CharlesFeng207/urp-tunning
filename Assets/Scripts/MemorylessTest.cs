@@ -7,16 +7,15 @@ using UnityEngine.UI;
 public class MemorylessTest : MonoBehaviour
 {
     public Text Text;
-    public UniversalRenderPipelineAsset Asset;
 
     // Update is called once per frame
     void Update()
     {
-        Text.text = $"Memoryless:{Asset.depthBufferMemoryless}";
+        Text.text = $"Memoryless:{UniversalRenderPipeline.asset.depthBufferMemoryless}";
     }
 
     public void OnClick()
     {
-        Asset.depthBufferMemoryless = !Asset.depthBufferMemoryless;
+        UniversalRenderPipeline.asset.depthBufferMemoryless = !UniversalRenderPipeline.asset.depthBufferMemoryless;
     }
 }

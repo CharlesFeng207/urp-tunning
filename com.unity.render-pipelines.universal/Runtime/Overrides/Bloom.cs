@@ -32,6 +32,9 @@ namespace UnityEngine.Rendering.Universal
         [Tooltip("When use custom bloom, control iteration count")]
         public MinIntParameter customBloomInterNum = new MinIntParameter(1, 1);
 
+        [Tooltip("Use custom bloom with blur")]
+        public BoolParameter bloomWithBlur = new BoolParameter(false);
+
         [Tooltip("Set _BloomWithBlurStartRatio")]
         public ClampedFloatParameter bloomWithBlurStartRatio = new ClampedFloatParameter(0.47f, 0f, 0.5f);
 
