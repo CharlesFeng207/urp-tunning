@@ -4,6 +4,7 @@ Shader "Hidden/Universal Render Pipeline/UberPostCustom"
 
         #pragma multi_compile_local _ _BLOOM_LQ _BLOOM_HQ _BLOOM_LQ_DIRT _BLOOM_HQ_DIRT
         #pragma multi_compile_local _ _HDR_GRADING _TONEMAP_ACES _TONEMAP_NEUTRAL
+        #pragma multi_compile_local _ _WITH_BLUR
 
         #include "Packages/com.unity.render-pipelines.core/ShaderLibrary/Common.hlsl"
         #include "Packages/com.unity.render-pipelines.core/ShaderLibrary/Filtering.hlsl"
@@ -41,6 +42,9 @@ Shader "Hidden/Universal Render Pipeline/UberPostCustom"
         float4 _Grain_TilingParams;
         float4 _Bloom_Texture_TexelSize;
         float4 _Dithering_Params;
+        float _BloomWithBlurStartRatio;
+        float _BloomWithBlurEffectStart;
+        float _BloomWithBlurEffectEnd;
 
         #define DistCenter              _Distortion_Params1.xy
         #define DistAxis                _Distortion_Params1.zw
@@ -84,20 +88,19 @@ Shader "Hidden/Universal Render Pipeline/UberPostCustom"
             float2 uv = UnityStereoTransformScreenSpaceTex(input.uv);
             float2 uvDistorted = uv;
 
-            half3 color = (0.0).xxx;
-            color = SAMPLE_TEXTURE2D_X(_BlitTex, sampler_LinearClamp, uvDistorted).xyz;
+            half4 t = SAMPLE_TEXTURE2D_X(_BlitTex, sampler_LinearClamp, uvDistorted);
+            half3 color = t.xyz;
+            half a = t.a;
 
             #if defined(BLOOM)
             {
                 #if _BLOOM_HQ && !defined(SHADER_API_GLES)
-                half4 bloom = SampleTexture2DBicubic(TEXTURE2D_X_ARGS(_Bloom_Texture, sampler_LinearClamp), uvDistorted, _Bloom_Texture_TexelSize.zwxy, (1.0).xx, unity_StereoEyeIndex);
+                half4 bloomColor = SampleTexture2DBicubic(TEXTURE2D_X_ARGS(_Bloom_Texture, sampler_LinearClamp), uvDistorted, _Bloom_Texture_TexelSize.zwxy, (1.0).xx, unity_StereoEyeIndex);
                 #else
-                half4 bloom = SAMPLE_TEXTURE2D_X(_Bloom_Texture, sampler_LinearClamp, uvDistorted);
+                half4 bloomColor = SAMPLE_TEXTURE2D_X(_Bloom_Texture, sampler_LinearClamp, uvDistorted);
                 #endif
 
-                #if UNITY_COLORSPACE_GAMMA
-                bloom.xyz *= bloom.xyz; // γ to linear
-                #endif
+                half4 bloom = bloomColor;
 
                 UNITY_BRANCH
                 if (BloomRGBM > 0)
@@ -105,8 +108,17 @@ Shader "Hidden/Universal Render Pipeline/UberPostCustom"
                     bloom.xyz = DecodeRGBM(bloom);
                 }
 
-                bloom.xyz *= BloomIntensity;
-                color += bloom.xyz * BloomTint;
+                //return bloomColor;
+                float3 bloomEffect = bloom.xyz * BloomTint * BloomIntensity;
+
+                #if defined(_WITH_BLUR)
+                float dd = max(abs(uvDistorted.x - 0.5), abs(uvDistorted.y - 0.5));
+                bloomEffect *= 1.0 - smoothstep(_BloomWithBlurEffectStart, _BloomWithBlurEffectEnd, dd);
+                //return half4(bloomEffect, 1.0);
+                color = lerp(color, bloomColor.xyz, smoothstep(_BloomWithBlurStartRatio, 0.5, dd)) + bloomEffect;
+                #else
+                color += bloomEffect;
+                #endif
 
                 #if defined(BLOOM_DIRT)
                 {
@@ -122,7 +134,7 @@ Shader "Hidden/Universal Render Pipeline/UberPostCustom"
             }
             #endif
 
-            return half4(color, 1.0);
+            return half4(color, a);
         }
 
     ENDHLSL

@@ -555,6 +555,9 @@ namespace UnityEngine.Rendering.Universal
                 depthDescriptor.colorFormat = RenderTextureFormat.Depth;
                 depthDescriptor.depthBufferBits = k_DepthStencilBufferBits;
 
+                if(UniversalRenderPipeline.asset.depthBufferMemoryless)
+                    depthDescriptor.memoryless = RenderTextureMemoryless.Depth;
+
                 cmd.GetTemporaryRT(m_ActiveCameraDepthAttachment.id, depthDescriptor, FilterMode.Point);
             }
 

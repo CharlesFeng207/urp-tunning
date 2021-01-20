@@ -30,6 +30,7 @@ MonoBehaviour:
     uberPostPS: {fileID: 4800000, guid: e7857e9d0c934dc4f83f270f8447b006, type: 3}
     finalPostPassPS: {fileID: 4800000, guid: c49e63ed1bbcb334780a3bd19dfed403, type: 3}
     uberPostPS_Custom: {fileID: 4800000, guid: 820481b88cc73e24da92540ace219115, type: 3}
+    bloomPS_Custom: {fileID: 4800000, guid: 22200944b3b269e448ac5b1498fa6e23, type: 3}
   textures:
     blueNoise16LTex:
     - {fileID: 2800000, guid: 81200413a40918d4d8702e94db29911c, type: 3}

@@ -15,6 +15,11 @@ namespace UnityEditor.Rendering.Universal
         SerializedDataParameter m_HighQualityFiltering;
         SerializedDataParameter m_DirtTexture;
         SerializedDataParameter m_DirtIntensity;
+        SerializedDataParameter m_CustomBloomInterNum;
+        SerializedDataParameter m_BloomWithBlurStartRatio;
+        SerializedDataParameter m_BloomWithBlurEffectStart;
+        SerializedDataParameter m_BloomWithBlurEffectEnd;
+
 
         public override void OnEnable()
         {
@@ -28,6 +33,10 @@ namespace UnityEditor.Rendering.Universal
             m_HighQualityFiltering = Unpack(o.Find(x => x.highQualityFiltering));
             m_DirtTexture = Unpack(o.Find(x => x.dirtTexture));
             m_DirtIntensity = Unpack(o.Find(x => x.dirtIntensity));
+            m_CustomBloomInterNum = Unpack(o.Find(x => x.customBloomInterNum));
+            m_BloomWithBlurStartRatio = Unpack(o.Find(x => x.bloomWithBlurStartRatio));
+            m_BloomWithBlurEffectStart = Unpack(o.Find(x => x.bloomWithBlurEffectStart));
+            m_BloomWithBlurEffectEnd = Unpack(o.Find(x => x.bloomWithBlurEffectEnd));
         }
 
         public override void OnInspectorGUI()
@@ -54,6 +63,11 @@ namespace UnityEditor.Rendering.Universal
 
             PropertyField(m_DirtTexture);
             PropertyField(m_DirtIntensity);
+            PropertyField(m_CustomBloomInterNum);
+            PropertyField(m_BloomWithBlurStartRatio);
+            PropertyField(m_BloomWithBlurEffectStart);
+            PropertyField(m_BloomWithBlurEffectEnd);
+
         }
     }
 }

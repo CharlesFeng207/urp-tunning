@@ -14,6 +14,7 @@
           <e p="BloomTest.cs" t="Include" />
           <e p="FPSDisplay.cs" t="Include" />
           <e p="OptimizeFinalBlitTest.cs" t="Include" />
+          <e p="OptimizePostExtraBlitTest.cs" t="Include" />
           <e p="SceneTest.cs" t="Include" />
           <e p="SimpleCameraController.cs" t="Include" />
           <e p="SRPBatcherTest.cs" t="Include" />
@@ -662,6 +663,7 @@
           </e>
           <e p="PostProcessing" t="Include">
             <e p="Bloom.shader" t="Include" />
+            <e p="BloomCustom.shader" t="Include" />
             <e p="BokehDepthOfField.shader" t="Include" />
             <e p="CameraMotionBlur.shader" t="Include" />
             <e p="Common.hlsl" t="Include" />
@@ -675,6 +677,7 @@
             <e p="SubpixelMorphologicalAntialiasing.shader" t="Include" />
             <e p="SubpixelMorphologicalAntialiasingBridge.hlsl" t="Include" />
             <e p="UberPost.shader" t="Include" />
+            <e p="UberPostCustom.shader" t="Include" />
           </e>
           <e p="Shaders.cs" t="Include" />
           <e p="ShadowCasterPass.hlsl" t="Include" />

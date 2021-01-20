@@ -67,6 +67,9 @@ namespace UnityEngine.Rendering.Universal
 
             [Reload("Shaders/PostProcessing/UberPostCustom.shader")]
             public Shader uberPostPS_Custom;
+
+            [Reload("Shaders/PostProcessing/BloomCustom.shader")]
+            public Shader bloomPS_Custom;
         }
 
         [Serializable, ReloadGroup]

@@ -82,6 +82,7 @@ namespace UnityEditor.Rendering.Universal
             public static GUIContent customUberPost = EditorGUIUtility.TrTextContent("Custom uber post", "Custom uber post");
             public static GUIContent customBloom = EditorGUIUtility.TrTextContent("Custom bloom", "Custom bloom");
             public static GUIContent customBloomWithBlur = EditorGUIUtility.TrTextContent("Custom bloom with blur", "Custom bloom with blur");
+            public static GUIContent depthBufferMemoryless = EditorGUIUtility.TrTextContent("Depth buffer memoryless", "Depth buffer memoryless");
 
             // Renderer List Messages
             public static GUIContent rendererListDefaultMessage =
@@ -159,6 +160,8 @@ namespace UnityEditor.Rendering.Universal
         SerializedProperty m_CustomUberPost;
         SerializedProperty m_CustomBloom;
         SerializedProperty m_CustomBloomWithBlur;
+        SerializedProperty m_DepthBufferMemoryless;
+
 
         public override void OnInspectorGUI()
         {
@@ -242,6 +245,7 @@ namespace UnityEditor.Rendering.Universal
             m_CustomUberPost = serializedObject.FindProperty("m_CustomUberPost");
             m_CustomBloom = serializedObject.FindProperty("m_CustomBloom");
             m_CustomBloomWithBlur = serializedObject.FindProperty("m_CustomBloomWithBlur");
+            m_DepthBufferMemoryless = serializedObject.FindProperty("m_DepthBufferMemoryless");
         }
 
         void DrawGeneralSettings()
@@ -450,6 +454,8 @@ namespace UnityEditor.Rendering.Universal
                 EditorGUILayout.PropertyField(m_CustomUberPost, Styles.customUberPost);
                 EditorGUILayout.PropertyField(m_CustomBloom, Styles.customBloom);
                 EditorGUILayout.PropertyField(m_CustomBloomWithBlur, Styles.customBloomWithBlur);
+                EditorGUILayout.PropertyField(m_DepthBufferMemoryless, Styles.depthBufferMemoryless);
+
 
                 EditorGUI.indentLevel--;
                 EditorGUILayout.Space();

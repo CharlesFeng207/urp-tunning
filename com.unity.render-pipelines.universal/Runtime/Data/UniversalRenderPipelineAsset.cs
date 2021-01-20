@@ -208,7 +208,7 @@ namespace UnityEngine.Rendering.Universal
         [SerializeField] bool m_CustomUberPost = false;
         [SerializeField] bool m_CustomBloom = false;
         [SerializeField] bool m_CustomBloomWithBlur = false;
-
+        [SerializeField] bool m_DepthBufferMemoryless = false;
 
         // Deprecated settings
         [SerializeField] ShadowQuality m_ShadowType = ShadowQuality.HardShadows;
@@ -761,11 +761,16 @@ namespace UnityEngine.Rendering.Universal
            set { m_CustomBloomWithBlur = value; }
        }
 
+       public bool depthBufferMemoryless
+       {
+           get { return m_DepthBufferMemoryless; }
+           set { m_DepthBufferMemoryless = value; }
+       }
 
-        public override Material defaultMaterial
-        {
-            get { return GetMaterial(DefaultMaterialType.Standard); }
-        }
+       public override Material defaultMaterial
+       {
+           get { return GetMaterial(DefaultMaterialType.Standard); }
+       }
 
         public override Material defaultParticleMaterial
         {

@@ -136,7 +136,7 @@ namespace UnityEngine.Rendering.Universal.Internal
             m_HasFinalPass = hasFinalPass;
             m_EnableSRGBConversionIfNeeded = enableSRGBConversion;
 
-            SetupUber();
+            SetupMaterials();
         }
 
         public void SetupFinalPass(in RenderTargetHandle source)
@@ -147,7 +147,7 @@ namespace UnityEngine.Rendering.Universal.Internal
             m_HasFinalPass = false;
             m_EnableSRGBConversionIfNeeded = true;
 
-            SetupUber();
+            SetupMaterials();
         }
 
         public override void Configure(CommandBuffer cmd, RenderTextureDescriptor cameraTextureDescriptor)
@@ -215,10 +215,15 @@ namespace UnityEngine.Rendering.Universal.Internal
             m_ResetHistory = false;
         }
 
-        void SetupUber()
+        void SetupMaterials()
         {
+            var asset = UniversalRenderPipeline.asset;
+
             m_Materials.CurrentUber =
-                UniversalRenderPipeline.asset.customUberPost ? m_Materials.uber_Custom : m_Materials.uber;
+                asset.customUberPost ? m_Materials.uber_Custom : m_Materials.uber;
+
+            m_Materials.CurrentBloom =
+                asset.customBloom && asset.customUberPost ? m_Materials.bloom_Custom : m_Materials.bloom;
         }
 
         RenderTextureDescriptor GetStereoCompatibleDescriptor()
@@ -373,6 +378,22 @@ namespace UnityEngine.Rendering.Universal.Internal
 
                     if (RequireSRGBConversionBlitToBackBuffer(cameraData) && m_EnableSRGBConversionIfNeeded)
                         m_Materials.CurrentUber.EnableKeyword(ShaderKeywordStrings.LinearToSRGBConversion);
+                }
+                else
+                {
+                    var customBloomWithBlur = UniversalRenderPipeline.asset.customBloomWithBlur;
+                    CoreUtils.SetKeyword(m_Materials.CurrentUber, ShaderKeywordStrings.CustomBloomWithBlur, customBloomWithBlur);
+                    if (customBloomWithBlur)
+                    {
+                        m_Materials.CurrentUber.SetFloat(ShaderConstants._BloomWithBlurStartRatio,
+                            m_Bloom.bloomWithBlurStartRatio.value);
+
+                        m_Materials.CurrentUber.SetFloat(ShaderConstants._BloomWithBlurEffectStart,
+                            m_Bloom.bloomWithBlurEffectStart.value);
+
+                        m_Materials.CurrentUber.SetFloat(ShaderConstants._BloomWithBlurEffectEnd,
+                            m_Bloom.bloomWithBlurEffectEnd.value);
+                    }
                 }
 
                 // Done with Uber, blit it
@@ -821,6 +842,9 @@ namespace UnityEngine.Rendering.Universal.Internal
 
         void SetupBloom(CommandBuffer cmd, int source, Material uberMaterial)
         {
+            var asset = UniversalRenderPipeline.asset;
+            var customBloom = asset.customBloom && asset.customUberPost;
+
             // Start at half-res
             int tw = m_Descriptor.width >> 1;
             int th = m_Descriptor.height >> 1;
@@ -837,10 +861,16 @@ namespace UnityEngine.Rendering.Universal.Internal
 
             // Material setup
             float scatter = Mathf.Lerp(0.05f, 0.95f, m_Bloom.scatter.value);
-            var bloomMaterial = m_Materials.bloom;
+            var bloomMaterial = m_Materials.CurrentBloom;
             bloomMaterial.SetVector(ShaderConstants._Params, new Vector4(scatter, clamp, threshold, thresholdKnee));
             CoreUtils.SetKeyword(bloomMaterial, ShaderKeywordStrings.BloomHQ, m_Bloom.highQualityFiltering.value);
             CoreUtils.SetKeyword(bloomMaterial, ShaderKeywordStrings.UseRGBM, m_UseRGBM);
+
+            if (customBloom)
+            {
+                CoreUtils.SetKeyword(bloomMaterial, ShaderKeywordStrings.CustomBloomWithBlur,
+                    asset.customBloomWithBlur);
+            }
 
             // Prefilter
             var desc = GetStereoCompatibleDescriptor(tw, th, m_DefaultHDRFormat);
@@ -848,45 +878,65 @@ namespace UnityEngine.Rendering.Universal.Internal
             cmd.GetTemporaryRT(ShaderConstants._BloomMipUp[0], desc, FilterMode.Bilinear);
             cmd.Blit(source, ShaderConstants._BloomMipDown[0], bloomMaterial, 0);
 
-            // Downsample - gaussian pyramid
-            int lastDown = ShaderConstants._BloomMipDown[0];
-            for (int i = 1; i < mipCount; i++)
+            if (customBloom)
             {
-                tw = Mathf.Max(1, tw >> 1);
-                th = Mathf.Max(1, th >> 1);
-                int mipDown = ShaderConstants._BloomMipDown[i];
-                int mipUp = ShaderConstants._BloomMipUp[i];
+                bloomMaterial.SetFloat(ShaderConstants._BloomWithBlurStartRatio, m_Bloom.bloomWithBlurStartRatio.value);
 
-                desc.width = tw;
-                desc.height = th;
+                // Blit
+                cmd.Blit(source, ShaderConstants._BloomMipUp[0], bloomMaterial, 0);
 
-                cmd.GetTemporaryRT(mipDown, desc, FilterMode.Bilinear);
-                cmd.GetTemporaryRT(mipUp, desc, FilterMode.Bilinear);
+                for (var i = 1; i <= m_Bloom.customBloomInterNum.value; i++)
+                {
+                    bloomMaterial.SetFloat(ShaderConstants._BloomInterNum, i);
+                    cmd.Blit(ShaderConstants._BloomMipUp[0], ShaderConstants._BloomMipDown[0], bloomMaterial, 1);
+                    cmd.Blit(ShaderConstants._BloomMipDown[0], ShaderConstants._BloomMipUp[0], bloomMaterial, 2);
+                }
 
-                // Classic two pass gaussian blur - use mipUp as a temporary target
-                //   First pass does 2x downsampling + 9-tap gaussian
-                //   Second pass does 9-tap gaussian using a 5-tap filter + bilinear filtering
-                cmd.Blit(lastDown, mipUp, bloomMaterial, 1);
-                cmd.Blit(mipUp, mipDown, bloomMaterial, 2);
-                lastDown = mipDown;
+                // Cleanup
+                cmd.ReleaseTemporaryRT(ShaderConstants._BloomMipDown[0]);
             }
-
-            // Upsample (bilinear by default, HQ filtering does bicubic instead
-            for (int i = mipCount - 2; i >= 0; i--)
+            else
             {
-                int lowMip = (i == mipCount - 2) ? ShaderConstants._BloomMipDown[i + 1] : ShaderConstants._BloomMipUp[i + 1];
-                int highMip = ShaderConstants._BloomMipDown[i];
-                int dst = ShaderConstants._BloomMipUp[i];
+                // Downsample - gaussian pyramid
+                int lastDown = ShaderConstants._BloomMipDown[0];
+                for (int i = 1; i < mipCount; i++)
+                {
+                    tw = Mathf.Max(1, tw >> 1);
+                    th = Mathf.Max(1, th >> 1);
+                    int mipDown = ShaderConstants._BloomMipDown[i];
+                    int mipUp = ShaderConstants._BloomMipUp[i];
 
-                cmd.SetGlobalTexture(ShaderConstants._MainTexLowMip, lowMip);
-                cmd.Blit(highMip, BlitDstDiscardContent(cmd, dst), bloomMaterial, 3);
-            }
+                    desc.width = tw;
+                    desc.height = th;
 
-            // Cleanup
-            for (int i = 0; i < mipCount; i++)
-            {
-                cmd.ReleaseTemporaryRT(ShaderConstants._BloomMipDown[i]);
-                if (i > 0) cmd.ReleaseTemporaryRT(ShaderConstants._BloomMipUp[i]);
+                    cmd.GetTemporaryRT(mipDown, desc, FilterMode.Bilinear);
+                    cmd.GetTemporaryRT(mipUp, desc, FilterMode.Bilinear);
+
+                    // Classic two pass gaussian blur - use mipUp as a temporary target
+                    //   First pass does 2x downsampling + 9-tap gaussian
+                    //   Second pass does 9-tap gaussian using a 5-tap filter + bilinear filtering
+                    cmd.Blit(lastDown, mipUp, bloomMaterial, 1);
+                    cmd.Blit(mipUp, mipDown, bloomMaterial, 2);
+                    lastDown = mipDown;
+                }
+
+                // Upsample (bilinear by default, HQ filtering does bicubic instead
+                for (int i = mipCount - 2; i >= 0; i--)
+                {
+                    int lowMip = (i == mipCount - 2) ? ShaderConstants._BloomMipDown[i + 1] : ShaderConstants._BloomMipUp[i + 1];
+                    int highMip = ShaderConstants._BloomMipDown[i];
+                    int dst = ShaderConstants._BloomMipUp[i];
+
+                    cmd.SetGlobalTexture(ShaderConstants._MainTexLowMip, lowMip);
+                    cmd.Blit(highMip, BlitDstDiscardContent(cmd, dst), bloomMaterial, 3);
+                }
+
+                // Cleanup
+                for (int i = 0; i < mipCount; i++)
+                {
+                    cmd.ReleaseTemporaryRT(ShaderConstants._BloomMipDown[i]);
+                    if (i > 0) cmd.ReleaseTemporaryRT(ShaderConstants._BloomMipUp[i]);
+                }
             }
 
             // Setup bloom on uber
@@ -1130,11 +1180,14 @@ namespace UnityEngine.Rendering.Universal.Internal
             public readonly Material cameraMotionBlur;
             public readonly Material paniniProjection;
             public readonly Material bloom;
+            public readonly Material bloom_Custom;
             public readonly Material uber;
             public readonly Material uber_Custom;
             public readonly Material finalPass;
 
             public Material CurrentUber;
+            public Material CurrentBloom;
+
 
             public MaterialLibrary(PostProcessData data)
             {
@@ -1145,6 +1198,7 @@ namespace UnityEngine.Rendering.Universal.Internal
                 cameraMotionBlur = Load(data.shaders.cameraMotionBlurPS);
                 paniniProjection = Load(data.shaders.paniniProjectionPS);
                 bloom = Load(data.shaders.bloomPS);
+                bloom_Custom = Load(data.shaders.bloomPS_Custom);
                 uber = Load(data.shaders.uberPostPS);
                 uber_Custom = Load(data.shaders.uberPostPS_Custom);
                 finalPass = Load(data.shaders.finalPostPassPS);
@@ -1174,6 +1228,7 @@ namespace UnityEngine.Rendering.Universal.Internal
                 CoreUtils.Destroy(cameraMotionBlur);
                 CoreUtils.Destroy(paniniProjection);
                 CoreUtils.Destroy(bloom);
+                CoreUtils.Destroy(bloom_Custom);
                 CoreUtils.Destroy(uber);
                 CoreUtils.Destroy(uber_Custom);
                 CoreUtils.Destroy(finalPass);
@@ -1221,6 +1276,10 @@ namespace UnityEngine.Rendering.Universal.Internal
             public static readonly int _UserLut_Params     = Shader.PropertyToID("_UserLut_Params");
             public static readonly int _InternalLut        = Shader.PropertyToID("_InternalLut");
             public static readonly int _UserLut            = Shader.PropertyToID("_UserLut");
+            public static readonly int _BloomInterNum            = Shader.PropertyToID("_BloomInterIndex");
+            public static readonly int _BloomWithBlurStartRatio            = Shader.PropertyToID("_BloomWithBlurStartRatio");
+            public static readonly int _BloomWithBlurEffectStart            = Shader.PropertyToID("_BloomWithBlurEffectStart");
+            public static readonly int _BloomWithBlurEffectEnd              = Shader.PropertyToID("_BloomWithBlurEffectEnd");
 
             public static readonly int _FullscreenProjMat  = Shader.PropertyToID("_FullscreenProjMat");
 

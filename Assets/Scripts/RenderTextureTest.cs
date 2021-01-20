@@ -4,19 +4,20 @@ using UnityEngine;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.UI;
 
-public class OptimizeFinalBlitTest : MonoBehaviour
+public class RenderTextureTest : MonoBehaviour
 {
     public Text Text;
-    public UniversalRenderPipelineAsset Asset;
+
+    public GameObject target;
 
     // Update is called once per frame
     void Update()
     {
-        Text.text = $"OptimizeFinalBlit:{Asset.useFinalBlitOptimize}";
+        Text.text = $"RenderTexture:{target.activeSelf}";
     }
 
     public void OnClick()
     {
-        Asset.useFinalBlitOptimize = !Asset.useFinalBlitOptimize;
+        target.SetActive(!target.activeSelf);
     }
 }
