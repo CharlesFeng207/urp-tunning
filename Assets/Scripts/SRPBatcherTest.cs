@@ -8,17 +8,15 @@ using UnityEngine.UI;
 public class SRPBatcherTest : MonoBehaviour
 {
     public Text Text;
-    public UniversalRenderPipelineAsset asset;
 
     // Update is called once per frame
     void Update()
     {
-
-        Text.text = $"UseSRP:{asset.useSRPBatcher}";
+        Text.text = $"UseSRP:{UniversalRenderPipeline.asset.useSRPBatcher}";
     }
 
     public void OnClick()
     {
-        asset.useSRPBatcher = !asset.useSRPBatcher;
+        UniversalRenderPipeline.asset.useSRPBatcher = !UniversalRenderPipeline.asset.useSRPBatcher;
     }
 }
