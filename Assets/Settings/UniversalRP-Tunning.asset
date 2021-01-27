@@ -40,19 +40,18 @@ MonoBehaviour:
   m_ShadowDepthBias: 1
   m_ShadowNormalBias: 1
   m_SoftShadowsSupported: 1
-  m_UseSRPBatcher: 1
-  m_SupportsDynamicBatching: 1
+  m_UseSRPBatcher: 0
+  m_SupportsDynamicBatching: 0
   m_MixedLightingSupported: 1
   m_DebugLevel: 0
   m_UseAdaptivePerformance: 0
   m_PostProcessingFeatureSet: 0
   m_ColorGradingMode: 0
   m_ColorGradingLutSize: 16
-  m_UseFinalBlitOptimize: 1
+  m_RenderOnFB: 0
   m_OptimizePostExtraBlit: 1
   m_CustomUberPost: 1
   m_CustomBloom: 1
-  m_CustomBloomWithBlur: 1
   m_DepthBufferMemoryless: 1
   m_ShadowType: 1
   m_LocalShadowsSupported: 0
