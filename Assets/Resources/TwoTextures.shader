@@ -3,7 +3,6 @@
     Properties
     {
         _MainTex ("Texture", 2D) = "white" {}
-        _CombineTex ("Texture2", 2D) = "white" {}
     }
     SubShader
     {
@@ -52,7 +51,7 @@
             {
                 // sample the texture
                 fixed4 col1 = tex2D(_MainTex, i.uv);
-                fixed4 col2 = tex2D(_CombineTex, i.uv);
+                fixed4 col2 = tex2D(_MainTex, i.uv);
 
                 return col1 * col2;
             }
